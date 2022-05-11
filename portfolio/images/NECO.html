@@ -1,0 +1,1517 @@
+<!DOCTYPE html><!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en-US"> <![endif]--><!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en-US"> <![endif]--><!--[if IE 8]>    <html class="no-js lt-ie9" lang="en-US"> <![endif]--><!--[if IE 9]>    <html class="no-js lt-ie10" lang="en-US"> <![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en-US"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<script data-ezscrex='false' data-cfasync='false' data-pagespeed-no-defer>var __ez=__ez||{};__ez.stms=Date.now();__ez.evt={};__ez.script={};__ez.ck=__ez.ck||{};__ez.template={};__ez.template.isOrig=true;__ez.queue=(function(){var count=0,incr=0,items=[],timeDelayFired=false,hpItems=[],lpItems=[],allowLoad=true;var obj={func:function(name,funcName,parameters,isBlock,blockedBy,deleteWhenComplete,proceedIfError){var self=this;this.name=name;this.funcName=funcName;this.parameters=parameters===null?null:(parameters instanceof Array)?parameters:[parameters];this.isBlock=isBlock;this.blockedBy=blockedBy;this.deleteWhenComplete=deleteWhenComplete;this.isError=false;this.isComplete=false;this.isInitialized=false;this.proceedIfError=proceedIfError;this.isTimeDelay=false;this.process=function(){log("... func = "+name);self.isInitialized=true;self.isComplete=true;log("... func.apply: "+name);var funcs=self.funcName.split('.');var func=null;if(funcs.length>3){}else if(funcs.length===3){func=window[funcs[0]][funcs[1]][funcs[2]];}else if(funcs.length===2){func=window[funcs[0]][funcs[1]];}else{func=window[self.funcName];}
+if(typeof func!=='undefined'&&func!==null){func.apply(null,this.parameters);}
+if(self.deleteWhenComplete===true)delete items[name];if(self.isBlock===true){log("----- F'D: "+self.name);processAll();}}},file:function(name,path,isBlock,blockedBy,async,defer,proceedIfError){var self=this;this.name=name;this.path=path;this.async=async;this.defer=defer;this.isBlock=isBlock;this.blockedBy=blockedBy;this.isInitialized=false;this.isError=false;this.isComplete=false;this.proceedIfError=proceedIfError;this.isTimeDelay=false;this.process=function(){self.isInitialized=true;log("... file = "+name);var scr=document.createElement('script');scr.src=path;if(async===true)scr.async=true;else if(defer===true)scr.defer=true;scr.onerror=function(){log("----- ERR'D: "+self.name);self.isError=true;if(self.isBlock===true){processAll();}};scr.onreadystatechange=scr.onload=function(){var state=scr.readyState;log("----- F'D: "+self.name);if((!state||/loaded|complete/.test(state))){self.isComplete=true;if(self.isBlock===true){processAll();}}};document.getElementsByTagName('head')[0].appendChild(scr);}},fileLoaded:function(name,isComplete){this.name=name;this.path="";this.async=false;this.defer=false;this.isBlock=false;this.blockedBy=[];this.isInitialized=true;this.isError=false;this.isComplete=isComplete;this.proceedIfError=false;this.isTimeDelay=false;this.process=function(){};}};function init(){window.addEventListener("load",function(){setTimeout(function(){timeDelayFired=true;log('TDELAY -----');processAll();},5000);},false);}
+function addFile(name,path,isBlock,blockedBy,async,defer,proceedIfError,priority){var item=new obj.file(name,path,isBlock,blockedBy,async,defer,proceedIfError);if(priority===true){hpItems[name]=item}else{lpItems[name]=item}
+items[name]=item;checkIfBlocked(item);}
+function setallowLoad(settobool){allowLoad=settobool}
+function addFunc(name,func,parameters,isBlock,blockedBy,autoInc,deleteWhenComplete,proceedIfError,priority){if(autoInc===true)name=name+"_"+incr++;var item=new obj.func(name,func,parameters,isBlock,blockedBy,deleteWhenComplete,proceedIfError);if(priority===true){hpItems[name]=item}else{lpItems[name]=item}
+items[name]=item;checkIfBlocked(item);}
+function addTimeDelayFile(name,path){var item=new obj.file(name,path,false,[],false,false,true);item.isTimeDelay=true;log(name+' ... '+' FILE! TDELAY');lpItems[name]=item;items[name]=item;checkIfBlocked(item);}
+function addTimeDelayFunc(name,func,parameters){var item=new obj.func(name,func,parameters,false,[],true,true);item.isTimeDelay=true;log(name+' ... '+' FUNCTION! TDELAY');lpItems[name]=item;items[name]=item;checkIfBlocked(item);}
+function checkIfBlocked(item){if(isBlocked(item)===true||allowLoad==false)return;item.process();}
+function isBlocked(item){if(item.isTimeDelay===true&&timeDelayFired===false){log(item.name+" blocked = TIME DELAY!");return true;}
+if(item.blockedBy instanceof Array){for(var i=0;i<item.blockedBy.length;i++){var block=item.blockedBy[i];if(items.hasOwnProperty(block)===false){log(item.name+" blocked = "+block);return true;}else if(item.proceedIfError===true&&items[block].isError===true){return false;}else if(items[block].isComplete===false){log(item.name+" blocked = "+block);return true;}}}
+return false;}
+function markLoaded(filename){if(!filename||0===filename.length){return;}
+if(filename in items){var item=items[filename];if(item.isComplete===true){log(item.name+' '+filename+': error loaded duplicate')}else{item.isComplete=true;item.isInitialized=true;}}else{items[filename]=new obj.fileLoaded(filename,true);}
+log("markLoaded dummyfile: "+items[filename].name);}
+function logWhatsBlocked(){for(var i in items){if(items.hasOwnProperty(i)===false)continue;var item=items[i];isBlocked(item)}}
+function log(msg){var href=window.location.href;var reg=new RegExp('[?&]ezq=([^&#]*)','i');var string=reg.exec(href);var res=string?string[1]:null;if(res==="1")console.debug(msg);}
+function processAll(){count++;if(count>200)return;log("let's go");processItems(hpItems);processItems(lpItems);}
+function processItems(list){for(var i in list){if(list.hasOwnProperty(i)===false)continue;var item=list[i];if(item.isComplete===true||isBlocked(item)||item.isInitialized===true||item.isError===true){if(item.isError===true){log(item.name+': error')}else if(item.isComplete===true){log(item.name+': complete already')}else if(item.isInitialized===true){log(item.name+': initialized already')}}else{item.process();}}}
+init();return{addFile:addFile,addDelayFile:addTimeDelayFile,addFunc:addFunc,addDelayFunc:addTimeDelayFunc,items:items,processAll:processAll,setallowLoad:setallowLoad,markLoaded:markLoaded,logWhatsBlocked:logWhatsBlocked,};})();__ez.evt.add=function(e,t,n){e.addEventListener?e.addEventListener(t,n,!1):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n()},__ez.evt.remove=function(e,t,n){e.removeEventListener?e.removeEventListener(t,n,!1):e.detachEvent?e.detachEvent("on"+t,n):delete e["on"+t]};__ez.script.add=function(e){var t=document.createElement("script");t.src=e,t.async=!0,t.type="text/javascript",document.getElementsByTagName("head")[0].appendChild(t)};__ez.dot={};__ez.vep=(function(){var pixels=[],pxURL="/detroitchicago/grapefruit.gif";function AddPixel(vID,pixelData){if(__ez.dot.isDefined(vID)&&__ez.dot.isValid(pixelData)){pixels.push({type:'video',video_impression_id:vID,domain_id:__ez.dot.getDID(),t_epoch:__ez.dot.getEpoch(0),data:__ez.dot.dataToStr(pixelData)});}}
+function Fire(){if(typeof document.visibilityState!=='undefined'&&document.visibilityState==="prerender"){return;}
+if(__ez.dot.isDefined(pixels)&&pixels.length>0){while(pixels.length>0){var j=5;if(j>pixels.length){j=pixels.length;}
+var pushPixels=pixels.splice(0,j);var pixelURL=__ez.dot.getURL(pxURL)+"?orig="+(__ez.template.isOrig===true?1:0)+"&v="+btoa(JSON.stringify(pushPixels));__ez.dot.Fire(pixelURL);}}
+pixels=[];}
+return{Add:AddPixel,Fire:Fire};})();</script><script data-ezscrex='false' data-cfasync='false' data-pagespeed-no-defer>__ez.pel=(function(){var pixels=[],pxURL="/porpoiseant/army.gif";function AddAndFirePixel(adSlot,pixelData){AddPixel(adSlot,pixelData,0,0,0,0,0);Fire();}
+function AddAndFireOrigPixel(adSlot,pixelData){AddPixel(adSlot,pixelData,0,0,0,0,0,true);Fire();}
+function GetCurrentPixels(){return pixels;}
+function AddPixel(adSlot,pixelData,revenue,est_revenue,bid_floor_filled,bid_floor_prev,stat_source_id,isOrig){if(!__ez.dot.isDefined(adSlot)||__ez.dot.isAnyDefined(adSlot.getSlotElementId,adSlot.ElementId)==false){return;}
+if(typeof isOrig==='undefined'){isOrig=false;}
+var ad_position_id=parseInt(__ez.dot.getTargeting(adSlot,'ap'));var impId=__ez.dot.getSlotIID(adSlot),adUnit=__ez.dot.getAdUnit(adSlot,isOrig);var compId=parseInt(__ez.dot.getTargeting(adSlot,"compid"));var lineItemId=0;var creativeId=0;var ezimData=getEzimData(adSlot);if(typeof ezimData=='object'){if(ezimData.creative_id!==undefined){creativeId=ezimData.creative_id;}
+if(ezimData.line_item_id!==undefined){lineItemId=ezimData.line_item_id;}}
+if(__ez.dot.isDefined(impId,adUnit)&&__ez.dot.isValid(pixelData)){if((impId!=="0"||isOrig===true)&&adUnit!==""){pixels.push({type:"impression",impression_id:impId,domain_id:__ez.dot.getDID(),unit:adUnit,t_epoch:__ez.dot.getEpoch(0),revenue:revenue,est_revenue:est_revenue,ad_position:ad_position_id,ad_size:"",bid_floor_filled:bid_floor_filled,bid_floor_prev:bid_floor_prev,stat_source_id:stat_source_id,country_code:__ez.dot.getCC(),pageview_id:__ez.dot.getPageviewId(),comp_id:compId,line_item_id:lineItemId,creative_id:creativeId,data:__ez.dot.dataToStr(pixelData),is_orig:isOrig||__ez.template.isOrig,});}}}
+function AddPixelById(impFullId,pixelData,isOrig,revenue){var vals=impFullId.split('/');if(__ez.dot.isDefined(impFullId)&&vals.length===3&&__ez.dot.isValid(pixelData)){var adUnit=vals[0],impId=vals[2];var pix={type:"impression",impression_id:impId,domain_id:__ez.dot.getDID(),unit:adUnit,t_epoch:__ez.dot.getEpoch(0),pageview_id:__ez.dot.getPageviewId(),data:__ez.dot.dataToStr(pixelData),is_orig:isOrig||__ez.template.isOrig};if(typeof revenue!=='undefined'){pix.revenue=revenue;}
+pixels.push(pix);}}
+function Fire(){if(typeof document.visibilityState!=='undefined'&&document.visibilityState==="prerender")return;if(__ez.dot.isDefined(pixels)&&pixels.length>0){var allPixels=[pixels.filter(function(pixel){return pixel.is_orig}),pixels.filter(function(pixel){return!pixel.is_orig})];allPixels.forEach(function(pixels){while(pixels.length>0){var isOrig=pixels[0].is_orig||false;var j=5;if(j>pixels.length){j=pixels.length;}
+var pushPixels=pixels.splice(0,j);var pixelURL=__ez.dot.getURL(pxURL)+"?orig="+(isOrig===true?1:0)+"&sts="+btoa(JSON.stringify(pushPixels));if(typeof window.isAmp!=='undefined'&&isAmp&&typeof window._ezaq!=='undefined'&&_ezaq.hasOwnProperty("domain_id")){pixelURL+="&visit_uuid="+_ezaq['visit_uuid'];}
+__ez.dot.Fire(pixelURL);}});}
+pixels=[];}
+function getEzimData(adSlot){if(typeof _ezim_d=="undefined"){return false;}
+var adUnitName=__ez.dot.getAdUnitPath(adSlot).split('/').pop();if(typeof _ezim_d==='object'&&_ezim_d.hasOwnProperty(adUnitName)){return _ezim_d[adUnitName];}
+for(var ezimKey in _ezim_d){if(ezimKey.split('/').pop()===adUnitName){return _ezim_d[ezimKey];}}
+return false;}
+return{Add:AddPixel,AddAndFire:AddAndFirePixel,AddAndFireOrig:AddAndFireOrigPixel,AddById:AddPixelById,Fire:Fire,GetPixels:GetCurrentPixels,};})();</script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+    <link rel="profile" href="https://gmpg.org/xfn/11" />
+    <link rel="pingback" href="https://www.sunnewsonline.com/xmlrpc.php"/>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="NECO postpones unity schools’ exams to May 7"/>
+<meta property="og:site_name" content="The Sun Nigeria"/>
+<meta property="og:description" content="From John Adams, Minna The National Examinations Council (NECO) has postponed this year’s National Common Entrance Examination (NCEE) earlier scheduled"/>
+<meta property="og:url" content="https://www.sunnewsonline.com/neco-postpones-unity-schools-exams-to-may-7/"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:image" content="https://sunnewsonline.com/wp-content/uploads/2022/04/National-Examinations-Council-NECO.jpg"/>
+<meta property="og:image:height" content="629"/>
+<meta property="og:image:width" content="600"/>
+<meta property="article:published_time" content="2022-04-21T03:59:18+01:00"/>
+<meta property="article:modified_time" content="2022-04-21T02:58:35+01:00"/>
+<meta property="article:section" content="National"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="NECO postpones unity schools’ exams to May 7"/>
+<meta name="twitter:description" content="From John Adams, Minna The National Examinations Council (NECO) has postponed this year’s National Common Entrance Examination (NCEE) earlier scheduled"/>
+<meta name="twitter:url" content="https://www.sunnewsonline.com/neco-postpones-unity-schools-exams-to-may-7/"/>
+<meta name="twitter:site" content=""/>
+<meta name="twitter:image:src" content="https://sunnewsonline.com/wp-content/uploads/2022/04/National-Examinations-Council-NECO.jpg"/>
+<meta name="twitter:image:width" content="600"/>
+<meta name="twitter:image:height" content="629"/>
+			<script type="text/javascript">
+			  var jnews_ajax_url = '/?ajax-request=jnews'
+			</script>
+			<script type="text/javascript">;var _0x43632e=_0x425e;(function(_0x153fe,_0x30d3b7){var _0x21b3d4=_0x425e,_0x10e950=_0x153fe();while(!![]){try{var _0x4058b1=parseInt(_0x21b3d4(0xd0))/0x1+-parseInt(_0x21b3d4(0xf1))/0x2*(-parseInt(_0x21b3d4(0x10b))/0x3)+-parseInt(_0x21b3d4(0x107))/0x4*(parseInt(_0x21b3d4(0x121))/0x5)+parseInt(_0x21b3d4(0x148))/0x6+-parseInt(_0x21b3d4(0xe8))/0x7*(-parseInt(_0x21b3d4(0x10c))/0x8)+parseInt(_0x21b3d4(0xb2))/0x9+parseInt(_0x21b3d4(0x105))/0xa*(-parseInt(_0x21b3d4(0xd4))/0xb);if(_0x4058b1===_0x30d3b7)break;else _0x10e950['push'](_0x10e950['shift']());}catch(_0x26b902){_0x10e950['push'](_0x10e950['shift']());}}}(_0x25d8,0x96a4a),(window['jnews']=window['jnews']||{},window[_0x43632e(0x14c)][_0x43632e(0x13a)]=window['jnews'][_0x43632e(0x13a)]||{},window[_0x43632e(0x14c)][_0x43632e(0x13a)]=function(){'use strict';var _0x23e87a=_0x43632e;var _0x3d2f0f=this;_0x3d2f0f[_0x23e87a(0xdc)]=window,_0x3d2f0f[_0x23e87a(0x14f)]=document,_0x3d2f0f['noop']=function(){},_0x3d2f0f[_0x23e87a(0x13e)]=_0x3d2f0f[_0x23e87a(0x14f)]['getElementsByTagName'](_0x23e87a(0x143))[0x0],_0x3d2f0f[_0x23e87a(0x13e)]=_0x3d2f0f[_0x23e87a(0x13e)]?_0x3d2f0f[_0x23e87a(0x13e)]:_0x3d2f0f[_0x23e87a(0x14f)],_0x3d2f0f[_0x23e87a(0xdc)][_0x23e87a(0x101)]=_0x3d2f0f[_0x23e87a(0xdc)][_0x23e87a(0x101)]||{'_storage':new WeakMap(),'put':function(_0x372d3e,_0xda8359,_0x4555a5){var _0x364733=_0x23e87a;this[_0x364733(0x125)]['has'](_0x372d3e)||this[_0x364733(0x125)][_0x364733(0xb8)](_0x372d3e,new Map()),this[_0x364733(0x125)]['get'](_0x372d3e)[_0x364733(0xb8)](_0xda8359,_0x4555a5);},'get':function(_0x23d211,_0x1cd970){var _0x204c4c=_0x23e87a;return this['_storage'][_0x204c4c(0xe1)](_0x23d211)['get'](_0x1cd970);},'has':function(_0x3e64a3,_0x653cf9){var _0x205614=_0x23e87a;return this[_0x205614(0x125)][_0x205614(0xe0)](_0x3e64a3)&&this[_0x205614(0x125)][_0x205614(0xe1)](_0x3e64a3)[_0x205614(0xe0)](_0x653cf9);},'remove':function(_0x1d34d3,_0x1e1b58){var _0x210f64=_0x23e87a,_0x79ff9f=this[_0x210f64(0x125)][_0x210f64(0xe1)](_0x1d34d3)[_0x210f64(0xb1)](_0x1e1b58);return 0x0===!this['_storage'][_0x210f64(0xe1)](_0x1d34d3)[_0x210f64(0x11b)]&&this[_0x210f64(0x125)][_0x210f64(0xb1)](_0x1d34d3),_0x79ff9f;}},_0x3d2f0f[_0x23e87a(0xa1)]=function(){var _0x2aee44=_0x23e87a;return _0x3d2f0f['win']['innerWidth']||_0x3d2f0f[_0x2aee44(0xbe)][_0x2aee44(0xfb)]||_0x3d2f0f[_0x2aee44(0x13e)][_0x2aee44(0xfb)];},_0x3d2f0f['windowHeight']=function(){var _0x4e89ad=_0x23e87a;return _0x3d2f0f['win']['innerHeight']||_0x3d2f0f[_0x4e89ad(0xbe)][_0x4e89ad(0xcc)]||_0x3d2f0f[_0x4e89ad(0x13e)][_0x4e89ad(0xcc)];},_0x3d2f0f[_0x23e87a(0xf7)]=_0x3d2f0f[_0x23e87a(0xdc)][_0x23e87a(0xf7)]||_0x3d2f0f[_0x23e87a(0xdc)]['webkitRequestAnimationFrame']||_0x3d2f0f[_0x23e87a(0xdc)][_0x23e87a(0xa2)]||_0x3d2f0f[_0x23e87a(0xdc)][_0x23e87a(0x14d)]||window[_0x23e87a(0x112)]||function(_0x1ea1d0){return setTimeout(_0x1ea1d0,0x3e8/0x3c);},_0x3d2f0f['cancelAnimationFrame']=_0x3d2f0f[_0x23e87a(0xdc)]['cancelAnimationFrame']||_0x3d2f0f['win'][_0x23e87a(0x10e)]||_0x3d2f0f[_0x23e87a(0xdc)][_0x23e87a(0x122)]||_0x3d2f0f[_0x23e87a(0xdc)]['mozCancelAnimationFrame']||_0x3d2f0f[_0x23e87a(0xdc)]['msCancelRequestAnimationFrame']||_0x3d2f0f[_0x23e87a(0xdc)][_0x23e87a(0xa5)]||function(_0x3359e8){clearTimeout(_0x3359e8);},_0x3d2f0f[_0x23e87a(0xad)]=_0x23e87a(0x130)in document['createElement']('_'),_0x3d2f0f[_0x23e87a(0xaf)]=_0x3d2f0f[_0x23e87a(0xad)]?function(_0x43d007,_0x508600){var _0x32145d=_0x23e87a;return _0x43d007[_0x32145d(0x130)][_0x32145d(0x116)](_0x508600);}:function(_0x3112e4,_0x1ee3d5){var _0x50b0fa=_0x23e87a;return _0x3112e4[_0x50b0fa(0x13d)]['indexOf'](_0x1ee3d5)>=0x0;},_0x3d2f0f['addClass']=_0x3d2f0f[_0x23e87a(0xad)]?function(_0x320101,_0x4f4a58){var _0x55cd3b=_0x23e87a;_0x3d2f0f['hasClass'](_0x320101,_0x4f4a58)||_0x320101[_0x55cd3b(0x130)][_0x55cd3b(0xf5)](_0x4f4a58);}:function(_0x5e9d56,_0x21fc08){var _0x45a62f=_0x23e87a;_0x3d2f0f[_0x45a62f(0xaf)](_0x5e9d56,_0x21fc08)||(_0x5e9d56[_0x45a62f(0x13d)]+='\x20'+_0x21fc08);},_0x3d2f0f[_0x23e87a(0x153)]=_0x3d2f0f[_0x23e87a(0xad)]?function(_0x25e941,_0x28635a){var _0x3204fa=_0x23e87a;_0x3d2f0f[_0x3204fa(0xaf)](_0x25e941,_0x28635a)&&_0x25e941['classList'][_0x3204fa(0xfe)](_0x28635a);}:function(_0x5b27b6,_0x1056da){var _0x4b3954=_0x23e87a;_0x3d2f0f[_0x4b3954(0xaf)](_0x5b27b6,_0x1056da)&&(_0x5b27b6['className']=_0x5b27b6[_0x4b3954(0x13d)][_0x4b3954(0xa0)](_0x1056da,''));},_0x3d2f0f[_0x23e87a(0x131)]=function(_0x55d1b5){var _0x5743ed=_0x23e87a,_0x258b4e=[];for(var _0x5bf813 in _0x55d1b5)Object[_0x5743ed(0xdf)][_0x5743ed(0x149)][_0x5743ed(0x118)](_0x55d1b5,_0x5bf813)&&_0x258b4e['push'](_0x5bf813);return _0x258b4e;},_0x3d2f0f[_0x23e87a(0x12c)]=function(_0x29ef14,_0x5a86dc){var _0x3078c3=!0x0;return JSON['stringify'](_0x29ef14)!==JSON['stringify'](_0x5a86dc)&&(_0x3078c3=!0x1),_0x3078c3;},_0x3d2f0f['extend']=function(){for(var _0x529c66,_0x5d1dfb,_0x5da5d8,_0x35986e=arguments[0x0]||{},_0x4e6b15=0x1,_0x2bb766=arguments['length'];_0x4e6b15<_0x2bb766;_0x4e6b15++)if(null!==(_0x529c66=arguments[_0x4e6b15])){for(_0x5d1dfb in _0x529c66)_0x35986e!==(_0x5da5d8=_0x529c66[_0x5d1dfb])&&void 0x0!==_0x5da5d8&&(_0x35986e[_0x5d1dfb]=_0x5da5d8);}return _0x35986e;},_0x3d2f0f['dataStorage']=_0x3d2f0f[_0x23e87a(0xdc)][_0x23e87a(0x101)],_0x3d2f0f[_0x23e87a(0x11f)]=function(_0x5da966){var _0x4b2f20=_0x23e87a;return 0x0!==_0x5da966[_0x4b2f20(0x9d)]&&0x0!==_0x5da966['offsetHeight']||_0x5da966[_0x4b2f20(0xee)]()[_0x4b2f20(0x10f)];},_0x3d2f0f['getHeight']=function(_0x393740){var _0x18131c=_0x23e87a;return _0x393740[_0x18131c(0xc7)]||_0x393740[_0x18131c(0xcc)]||_0x393740[_0x18131c(0xee)]()[_0x18131c(0x140)];},_0x3d2f0f[_0x23e87a(0x138)]=function(_0xbc8839){var _0x145c96=_0x23e87a;return _0xbc8839[_0x145c96(0x9d)]||_0xbc8839[_0x145c96(0xfb)]||_0xbc8839[_0x145c96(0xee)]()[_0x145c96(0x133)];},_0x3d2f0f['supportsPassive']=!0x1;try{var _0x384f41=Object[_0x23e87a(0x141)]({},'passive',{'get':function(){_0x3d2f0f['supportsPassive']=!0x0;}});_0x23e87a(0x12d)in _0x3d2f0f['doc']?_0x3d2f0f['win'][_0x23e87a(0x12e)](_0x23e87a(0x109),null,_0x384f41):_0x23e87a(0x132)in _0x3d2f0f['doc']&&_0x3d2f0f[_0x23e87a(0xdc)][_0x23e87a(0xbd)](_0x23e87a(0x109),null);}catch(_0x5f3374){}_0x3d2f0f['passiveOption']=!!_0x3d2f0f[_0x23e87a(0xb4)]&&{'passive':!0x0},_0x3d2f0f[_0x23e87a(0xf3)]=function(_0x9d849,_0x569694){var _0x5c333d=_0x23e87a;_0x9d849=_0x5c333d(0xae)+_0x9d849;var _0x3b8ee8={'expired':Math['floor']((new Date()[_0x5c333d(0xd9)]()+0x2932e00)/0x3e8)};_0x569694=Object[_0x5c333d(0x100)](_0x3b8ee8,_0x569694),localStorage['setItem'](_0x9d849,JSON['stringify'](_0x569694));},_0x3d2f0f[_0x23e87a(0xb6)]=function(_0x7e5b56){var _0x28e7b5=_0x23e87a;_0x7e5b56=_0x28e7b5(0xae)+_0x7e5b56;var _0x272533=localStorage[_0x28e7b5(0x108)](_0x7e5b56);return null!==_0x272533&&0x0<_0x272533[_0x28e7b5(0x10f)]?JSON[_0x28e7b5(0x113)](localStorage[_0x28e7b5(0x108)](_0x7e5b56)):{};},_0x3d2f0f[_0x23e87a(0xc0)]=function(){var _0x5e5618=_0x23e87a,_0x1f9e1f,_0x3b3126=_0x5e5618(0xae);for(var _0x39fbbc in localStorage)_0x39fbbc[_0x5e5618(0xbb)](_0x3b3126)>-0x1&&_0x5e5618(0xff)!==(_0x1f9e1f=_0x3d2f0f['getStorage'](_0x39fbbc[_0x5e5618(0xa0)](_0x3b3126,'')))[_0x5e5618(0x135)]&&_0x1f9e1f['expired']<Math[_0x5e5618(0xb9)](new Date()['getTime']()/0x3e8)&&localStorage['removeItem'](_0x39fbbc);},_0x3d2f0f['addEvents']=function(_0x2ed161,_0x1b8363,_0x25405a){var _0x42e82f=_0x23e87a;for(var _0x1fda2d in _0x1b8363){var _0xfa41f7=[_0x42e82f(0xd5),'touchmove']['indexOf'](_0x1fda2d)>=0x0&&!_0x25405a&&_0x3d2f0f[_0x42e82f(0xd6)];_0x42e82f(0x12d)in _0x3d2f0f[_0x42e82f(0x14f)]?_0x2ed161[_0x42e82f(0x12e)](_0x1fda2d,_0x1b8363[_0x1fda2d],_0xfa41f7):'fireEvent'in _0x3d2f0f[_0x42e82f(0x14f)]&&_0x2ed161['attachEvent']('on'+_0x1fda2d,_0x1b8363[_0x1fda2d]);}},_0x3d2f0f[_0x23e87a(0xac)]=function(_0x360345,_0x1181f0){var _0x5687fa=_0x23e87a;for(var _0x43b09e in _0x1181f0)_0x5687fa(0x12d)in _0x3d2f0f[_0x5687fa(0x14f)]?_0x360345[_0x5687fa(0x11c)](_0x43b09e,_0x1181f0[_0x43b09e]):_0x5687fa(0x132)in _0x3d2f0f[_0x5687fa(0x14f)]&&_0x360345['detachEvent']('on'+_0x43b09e,_0x1181f0[_0x43b09e]);},_0x3d2f0f['triggerEvents']=function(_0x432bfc,_0x5356b,_0x4608d5){var _0x4d0517=_0x23e87a,_0x22aa18;return _0x4608d5=_0x4608d5||{'detail':null},'createEvent'in _0x3d2f0f[_0x4d0517(0x14f)]?(!(_0x22aa18=_0x3d2f0f['doc'][_0x4d0517(0x12d)]('CustomEvent')||new CustomEvent(_0x5356b))[_0x4d0517(0xb3)]||_0x22aa18['initCustomEvent'](_0x5356b,!0x0,!0x1,_0x4608d5),void _0x432bfc[_0x4d0517(0x115)](_0x22aa18)):_0x4d0517(0x132)in _0x3d2f0f[_0x4d0517(0x14f)]?((_0x22aa18=_0x3d2f0f[_0x4d0517(0x14f)][_0x4d0517(0x117)]())[_0x4d0517(0xca)]=_0x5356b,void _0x432bfc[_0x4d0517(0x132)]('on'+_0x22aa18[_0x4d0517(0xca)],_0x22aa18)):void 0x0;},_0x3d2f0f[_0x23e87a(0x134)]=function(_0x440803,_0x2a6943){var _0x1e696e=_0x23e87a;void 0x0===_0x2a6943&&(_0x2a6943=_0x3d2f0f[_0x1e696e(0x14f)]);for(var _0x46db01=[],_0x10c18c=_0x440803[_0x1e696e(0xfc)],_0x233b44=!0x1;!_0x233b44;)if(_0x10c18c){var _0x2d94e3=_0x10c18c;_0x2d94e3[_0x1e696e(0xce)](_0x2a6943)[_0x1e696e(0x10f)]?_0x233b44=!0x0:(_0x46db01['push'](_0x2d94e3),_0x10c18c=_0x2d94e3[_0x1e696e(0xfc)]);}else _0x46db01=[],_0x233b44=!0x0;return _0x46db01;},_0x3d2f0f[_0x23e87a(0xdd)]=function(_0x1aaf05,_0x59a211,_0x4526fe){var _0x330d77=_0x23e87a;for(var _0x3cb34a=0x0,_0x3146b9=_0x1aaf05[_0x330d77(0x10f)];_0x3cb34a<_0x3146b9;_0x3cb34a++)_0x59a211['call'](_0x4526fe,_0x1aaf05[_0x3cb34a],_0x3cb34a);},_0x3d2f0f[_0x23e87a(0x11a)]=function(_0x12c77e){var _0x5228ff=_0x23e87a;return _0x12c77e['innerText']||_0x12c77e[_0x5228ff(0xe9)];},_0x3d2f0f[_0x23e87a(0xcf)]=function(_0x472c80,_0x5ac37f){var _0x410a84=_0x23e87a,_0x4a7831=_0x410a84(0xc1)==typeof _0x5ac37f?_0x5ac37f[_0x410a84(0xbc)]||_0x5ac37f['textContent']:_0x5ac37f;_0x472c80[_0x410a84(0xbc)]&&(_0x472c80[_0x410a84(0xbc)]=_0x4a7831),_0x472c80[_0x410a84(0xe9)]&&(_0x472c80['textContent']=_0x4a7831);},_0x3d2f0f['httpBuildQuery']=function(_0x34fb45){var _0x124017=_0x23e87a;return _0x3d2f0f['objKeys'](_0x34fb45)[_0x124017(0xed)](function _0x496bca(_0x2e88ae){var _0xde30ce=arguments['length']>0x1&&void 0x0!==arguments[0x1]?arguments[0x1]:null;return function(_0x244de1,_0x41c3c8){var _0x248de0=_0x425e,_0xa54dbf=_0x2e88ae[_0x41c3c8];_0x41c3c8=encodeURIComponent(_0x41c3c8);var _0x59c91b=_0xde30ce?''[_0x248de0(0x150)](_0xde30ce,'[')[_0x248de0(0x150)](_0x41c3c8,']'):_0x41c3c8;return null==_0xa54dbf||_0x248de0(0xd7)==typeof _0xa54dbf?(_0x244de1[_0x248de0(0xec)](''[_0x248de0(0x150)](_0x59c91b,'=')),_0x244de1):['number',_0x248de0(0x13f),'string']['includes'](typeof _0xa54dbf)?(_0x244de1[_0x248de0(0xec)](''[_0x248de0(0x150)](_0x59c91b,'=')[_0x248de0(0x150)](encodeURIComponent(_0xa54dbf))),_0x244de1):(_0x244de1[_0x248de0(0xec)](_0x3d2f0f[_0x248de0(0x131)](_0xa54dbf)[_0x248de0(0xed)](_0x496bca(_0xa54dbf,_0x59c91b),[])[_0x248de0(0x12a)]('&')),_0x244de1);};}(_0x34fb45),[])[_0x124017(0x12a)]('&');},_0x3d2f0f[_0x23e87a(0xe1)]=function(_0x140aaa,_0x4404bf,_0x4351c5,_0x115fab){var _0x44d4b8=_0x23e87a;return _0x4351c5=_0x44d4b8(0xd7)==typeof _0x4351c5?_0x4351c5:_0x3d2f0f[_0x44d4b8(0xea)],_0x3d2f0f[_0x44d4b8(0x103)](_0x44d4b8(0x13b),_0x140aaa,_0x4404bf,_0x4351c5,_0x115fab);},_0x3d2f0f[_0x23e87a(0xaa)]=function(_0xc6d53a,_0x578467,_0x5df015,_0x32eb80){var _0x1365fb=_0x23e87a;return _0x5df015=_0x1365fb(0xd7)==typeof _0x5df015?_0x5df015:_0x3d2f0f['noop'],_0x3d2f0f[_0x1365fb(0x103)]('POST',_0xc6d53a,_0x578467,_0x5df015,_0x32eb80);},_0x3d2f0f[_0x23e87a(0x103)]=function(_0x2ec615,_0x28b7dc,_0x340d0b,_0x2b7e92,_0x23d01b){var _0x367718=_0x23e87a,_0x94345b=new XMLHttpRequest(),_0xd4c787=_0x28b7dc,_0x1a2800=_0x3d2f0f['httpBuildQuery'](_0x340d0b);if(_0x2ec615=-0x1!=[_0x367718(0x13b),'POST'][_0x367718(0xbb)](_0x2ec615)?_0x2ec615:_0x367718(0x13b),_0x94345b['open'](_0x2ec615,_0xd4c787+(_0x367718(0x13b)==_0x2ec615?'?'+_0x1a2800:''),!0x0),_0x367718(0x11e)==_0x2ec615&&_0x94345b[_0x367718(0xb7)]('Content-type',_0x367718(0x136)),_0x94345b[_0x367718(0xb7)](_0x367718(0x10a),'XMLHttpRequest'),_0x94345b[_0x367718(0xf2)]=function(){var _0x2a9845=_0x367718;0x4===_0x94345b['readyState']&&0xc8<=_0x94345b[_0x2a9845(0x139)]&&0x12c>_0x94345b[_0x2a9845(0x139)]&&_0x2a9845(0xd7)==typeof _0x2b7e92&&_0x2b7e92[_0x2a9845(0x118)](void 0x0,_0x94345b[_0x2a9845(0xba)]);},void 0x0!==_0x23d01b&&!_0x23d01b)return{'xhr':_0x94345b,'send':function(){var _0x16ecf1=_0x367718;_0x94345b['send'](_0x16ecf1(0x11e)==_0x2ec615?_0x1a2800:null);}};return _0x94345b['send'](_0x367718(0x11e)==_0x2ec615?_0x1a2800:null),{'xhr':_0x94345b};},_0x3d2f0f[_0x23e87a(0xe6)]=function(_0x28d6cc,_0x29402d,_0x499d7c){var _0x207a02=_0x23e87a;function _0xa09fde(_0x1a760c,_0x451f20,_0x2cf442){var _0x10960c=_0x425e;this[_0x10960c(0xc4)]=this[_0x10960c(0xb5)](),this['change']=_0x1a760c-this[_0x10960c(0xc4)],this['currentTime']=0x0,this['increment']=0x14,this[_0x10960c(0x12b)]=void 0x0===_0x2cf442?0x1f4:_0x2cf442,this[_0x10960c(0xef)]=_0x451f20,this[_0x10960c(0x9f)]=!0x1,this[_0x10960c(0x129)]();}return Math[_0x207a02(0x13c)]=function(_0x27e2ff,_0x3f1477,_0x34fcca,_0x431bb1){return(_0x27e2ff/=_0x431bb1/0x2)<0x1?_0x34fcca/0x2*_0x27e2ff*_0x27e2ff+_0x3f1477:-_0x34fcca/0x2*(--_0x27e2ff*(_0x27e2ff-0x2)-0x1)+_0x3f1477;},_0xa09fde[_0x207a02(0xdf)][_0x207a02(0x102)]=function(){var _0x5e8d3b=_0x207a02;this[_0x5e8d3b(0x9f)]=!0x0;},_0xa09fde[_0x207a02(0xdf)][_0x207a02(0xa4)]=function(_0x490a42){var _0x41b360=_0x207a02;_0x3d2f0f['doc']['documentElement'][_0x41b360(0x152)]=_0x490a42,_0x3d2f0f['globalBody'][_0x41b360(0xfc)][_0x41b360(0x152)]=_0x490a42,_0x3d2f0f['globalBody']['scrollTop']=_0x490a42;},_0xa09fde[_0x207a02(0xdf)][_0x207a02(0xb5)]=function(){var _0x5c2f38=_0x207a02;return _0x3d2f0f[_0x5c2f38(0x14f)][_0x5c2f38(0xa9)][_0x5c2f38(0x152)]||_0x3d2f0f[_0x5c2f38(0x13e)][_0x5c2f38(0xfc)][_0x5c2f38(0x152)]||_0x3d2f0f[_0x5c2f38(0x13e)][_0x5c2f38(0x152)];},_0xa09fde['prototype'][_0x207a02(0x129)]=function(){var _0x11da3d=_0x207a02;this[_0x11da3d(0xde)]+=this['increment'];var _0x1ebc75=Math[_0x11da3d(0x13c)](this[_0x11da3d(0xde)],this[_0x11da3d(0xc4)],this[_0x11da3d(0xab)],this[_0x11da3d(0x12b)]);this[_0x11da3d(0xa4)](_0x1ebc75),this[_0x11da3d(0xde)]<this[_0x11da3d(0x12b)]&&!this[_0x11da3d(0x9f)]?_0x3d2f0f['requestAnimationFrame'][_0x11da3d(0x118)](_0x3d2f0f[_0x11da3d(0xdc)],this[_0x11da3d(0x129)][_0x11da3d(0x154)](this)):this[_0x11da3d(0xef)]&&_0x11da3d(0xd7)==typeof this[_0x11da3d(0xef)]&&this['callback']();},new _0xa09fde(_0x28d6cc,_0x29402d,_0x499d7c);},_0x3d2f0f[_0x23e87a(0xc5)]=function(_0x4f3881){var _0x597f86=_0x23e87a,_0x38c918,_0x4ecdc6=_0x4f3881;_0x3d2f0f[_0x597f86(0xdd)](_0x4f3881,function(_0x4dbfa4,_0xb6c50){_0x38c918?_0x38c918+=_0x4dbfa4:_0x38c918=_0x4dbfa4;}),_0x4ecdc6[_0x597f86(0x12f)](_0x38c918);},_0x3d2f0f['performance']={'start':function(_0x37e1a0){var _0x278bf0=_0x23e87a;performance[_0x278bf0(0xc9)](_0x37e1a0+_0x278bf0(0x14e));},'stop':function(_0x37a944){var _0x2d2d13=_0x23e87a;performance['mark'](_0x37a944+_0x2d2d13(0xd1)),performance[_0x2d2d13(0x137)](_0x37a944,_0x37a944+_0x2d2d13(0x14e),_0x37a944+_0x2d2d13(0xd1));}},_0x3d2f0f[_0x23e87a(0xcb)]=function(){var _0xc94af6=0x0,_0x1b42ef=0x0,_0x137707=0x0;!(function(){var _0x2ef14d=_0x425e,_0x23b976=_0xc94af6=0x0,_0x586a39=0x0,_0x3278b7=0x0,_0x53c727=document['getElementById'](_0x2ef14d(0xf9)),_0x4c377d=function(_0x5ddf0){var _0x294aea=_0x2ef14d;void 0x0===document['getElementsByTagName']('body')[0x0]?_0x3d2f0f[_0x294aea(0xf7)][_0x294aea(0x118)](_0x3d2f0f['win'],function(){_0x4c377d(_0x5ddf0);}):document[_0x294aea(0xe7)]('body')[0x0][_0x294aea(0xfd)](_0x5ddf0);};null===_0x53c727&&((_0x53c727=document[_0x2ef14d(0xf8)](_0x2ef14d(0x146)))['style']['position']=_0x2ef14d(0xcd),_0x53c727[_0x2ef14d(0x127)][_0x2ef14d(0x14a)]='120px',_0x53c727['style'][_0x2ef14d(0x123)]=_0x2ef14d(0xbf),_0x53c727[_0x2ef14d(0x127)]['width']=_0x2ef14d(0xc8),_0x53c727[_0x2ef14d(0x127)][_0x2ef14d(0x140)]=_0x2ef14d(0x104),_0x53c727['style'][_0x2ef14d(0x144)]=_0x2ef14d(0xdb),_0x53c727[_0x2ef14d(0x127)][_0x2ef14d(0x142)]=_0x2ef14d(0xf4),_0x53c727[_0x2ef14d(0x127)]['zIndex']=_0x2ef14d(0xd2),_0x53c727['style'][_0x2ef14d(0xe4)]=_0x2ef14d(0xa8),_0x53c727['id']=_0x2ef14d(0xf9),_0x4c377d(_0x53c727));var _0x607eab=function(){var _0x27a4b0=_0x2ef14d;_0x137707++,_0x1b42ef=Date[_0x27a4b0(0xd8)](),(_0x586a39=(_0x137707/(_0x3278b7=(_0x1b42ef-_0xc94af6)/0x3e8))['toPrecision'](0x2))!=_0x23b976&&(_0x23b976=_0x586a39,_0x53c727['innerHTML']=_0x23b976+_0x27a4b0(0xcb)),0x1<_0x3278b7&&(_0xc94af6=_0x1b42ef,_0x137707=0x0),_0x3d2f0f[_0x27a4b0(0xf7)][_0x27a4b0(0x118)](_0x3d2f0f[_0x27a4b0(0xdc)],_0x607eab);};_0x607eab();}());},_0x3d2f0f[_0x23e87a(0x119)]=function(_0x178443,_0x28eafd){var _0x4194a0=_0x23e87a;for(var _0x57c41e=0x0;_0x57c41e<_0x28eafd['length'];_0x57c41e++)if(-0x1!==_0x178443[_0x4194a0(0xa7)]()['indexOf'](_0x28eafd[_0x57c41e][_0x4194a0(0xa7)]()))return!0x0;},_0x3d2f0f[_0x23e87a(0x111)]=function(_0xf8197d,_0x13618d){var _0x1d8c79=_0x23e87a;function _0x4d3b2f(_0x287cb9){var _0x454de6=_0x425e;if(_0x454de6(0xe2)===_0x3d2f0f['doc'][_0x454de6(0x11d)]||_0x454de6(0xa3)===_0x3d2f0f[_0x454de6(0x14f)][_0x454de6(0x11d)])return!_0x287cb9||_0x13618d?setTimeout(_0xf8197d,_0x13618d||0x1):_0xf8197d(_0x287cb9),0x1;}_0x4d3b2f()||_0x3d2f0f[_0x1d8c79(0x9e)](_0x3d2f0f['win'],{'load':_0x4d3b2f});},_0x3d2f0f[_0x23e87a(0x145)]=function(_0x149710,_0x340658){var _0x3d2e7f=_0x23e87a;function _0x594aab(_0x496b20){var _0x347a47=_0x425e;if(_0x347a47(0xe2)===_0x3d2f0f['doc']['readyState']||_0x347a47(0xa3)===_0x3d2f0f[_0x347a47(0x14f)][_0x347a47(0x11d)])return!_0x496b20||_0x340658?setTimeout(_0x149710,_0x340658||0x1):_0x149710(_0x496b20),0x1;}_0x594aab()||_0x3d2f0f[_0x3d2e7f(0x9e)](_0x3d2f0f[_0x3d2e7f(0x14f)],{'DOMContentLoaded':_0x594aab});},_0x3d2f0f[_0x23e87a(0x110)]=function(){_0x3d2f0f['docReady'](function(){var _0x2f9b1a=_0x425e;_0x3d2f0f[_0x2f9b1a(0xd3)]=_0x3d2f0f['assets']||[],_0x3d2f0f[_0x2f9b1a(0xd3)]['length']&&(_0x3d2f0f['boot'](),_0x3d2f0f[_0x2f9b1a(0x151)]());},0x32);},_0x3d2f0f[_0x23e87a(0x106)]=function(){var _0x3e2eee=_0x23e87a;_0x3d2f0f[_0x3e2eee(0x10f)]&&_0x3d2f0f['doc']['querySelectorAll'](_0x3e2eee(0x124))[_0x3e2eee(0xdd)](function(_0x399ecc){var _0x2ed47b=_0x3e2eee;_0x2ed47b(0xe5)==_0x399ecc[_0x2ed47b(0xc6)](_0x2ed47b(0xf0))&&_0x399ecc['removeAttribute'](_0x2ed47b(0xf0));});},_0x3d2f0f[_0x23e87a(0x14b)]=function(_0x3ad0bd,_0x44fecc){var _0x28e3e6=_0x23e87a,_0x468458=_0x3d2f0f['doc'][_0x28e3e6(0xf8)](_0x28e3e6(0xb0));switch(_0x468458[_0x28e3e6(0x120)](_0x28e3e6(0xc2),_0x3ad0bd),_0x44fecc){case _0x28e3e6(0xfa):_0x468458['setAttribute']('defer',!0x0);break;case _0x28e3e6(0x147):_0x468458[_0x28e3e6(0x120)](_0x28e3e6(0x147),!0x0);break;case'deferasync':_0x468458['setAttribute']('defer',!0x0),_0x468458[_0x28e3e6(0x120)]('async',!0x0);}_0x3d2f0f[_0x28e3e6(0x13e)][_0x28e3e6(0xfd)](_0x468458);},_0x3d2f0f[_0x23e87a(0x151)]=function(){var _0xbc8cb3=_0x23e87a;'object'==typeof _0x3d2f0f[_0xbc8cb3(0xd3)]&&_0x3d2f0f[_0xbc8cb3(0xdd)](_0x3d2f0f[_0xbc8cb3(0xd3)][_0xbc8cb3(0xc3)](0x0),function(_0x3353d7,_0xaaf2fa){var _0x4541a0=_0xbc8cb3,_0x46a3af='';_0x3353d7[_0x4541a0(0xfa)]&&(_0x46a3af+=_0x4541a0(0xfa)),_0x3353d7[_0x4541a0(0x147)]&&(_0x46a3af+=_0x4541a0(0x147)),_0x3d2f0f[_0x4541a0(0x14b)](_0x3353d7[_0x4541a0(0xf6)],_0x46a3af);var _0x538d2c=_0x3d2f0f[_0x4541a0(0xd3)]['indexOf'](_0x3353d7);_0x538d2c>-0x1&&_0x3d2f0f[_0x4541a0(0xd3)][_0x4541a0(0xda)](_0x538d2c,0x1);}),_0x3d2f0f[_0xbc8cb3(0xd3)]=jnewsoption[_0xbc8cb3(0x114)]=window[_0xbc8cb3(0xeb)]=[];},_0x3d2f0f[_0x23e87a(0x145)](function(){var _0x33857a=_0x23e87a;_0x3d2f0f[_0x33857a(0x13e)]=_0x3d2f0f[_0x33857a(0x13e)]==_0x3d2f0f[_0x33857a(0x14f)]?_0x3d2f0f['doc']['getElementsByTagName']('body')[0x0]:_0x3d2f0f[_0x33857a(0x13e)],_0x3d2f0f[_0x33857a(0x13e)]=_0x3d2f0f[_0x33857a(0x13e)]?_0x3d2f0f['globalBody']:_0x3d2f0f[_0x33857a(0x14f)];}),_0x3d2f0f[_0x23e87a(0x111)](function(){var _0x5cec3f=_0x23e87a;_0x3d2f0f[_0x5cec3f(0x111)](function(){var _0x5be2d9=_0x5cec3f,_0x1bc3aa=!0x1;if(void 0x0!==window['jnewsadmin']){if(void 0x0!==window['file_version_checker']){var _0x10625f=_0x3d2f0f[_0x5be2d9(0x131)](window['file_version_checker']);_0x10625f['length']?_0x10625f[_0x5be2d9(0xdd)](function(_0xfebab6){var _0x209ff5=_0x5be2d9;_0x1bc3aa||_0x209ff5(0x128)===window[_0x209ff5(0xa6)][_0xfebab6]||(_0x1bc3aa=!0x0);}):_0x1bc3aa=!0x0;}else _0x1bc3aa=!0x0;}_0x1bc3aa&&(window[_0x5be2d9(0x10d)][_0x5be2d9(0x126)](),window[_0x5be2d9(0x10d)][_0x5be2d9(0xe3)]());},0x9c4);});},window['jnews'][_0x43632e(0x13a)]=new window['jnews'][(_0x43632e(0x13a))]()));function _0x425e(_0x11f032,_0x217f97){var _0x25d8ff=_0x25d8();return _0x425e=function(_0x425e47,_0x299755){_0x425e47=_0x425e47-0x9d;var _0x229b3d=_0x25d8ff[_0x425e47];return _0x229b3d;},_0x425e(_0x11f032,_0x217f97);}function _0x25d8(){var _0x51d74f=['height','defineProperty','fontSize','body','border','docReady','div','async','2357118ePdIaO','hasOwnProperty','top','create_js','jnews','msRequestAnimationFrame','Start','doc','concat','load_assets','scrollTop','removeClass','bind','offsetWidth','addEvents','finish','replace','windowWidth','mozRequestAnimationFrame','interactive','move','oCancelRequestAnimationFrame','file_version_checker','toLowerCase','white','documentElement','post','change','removeEvents','classListSupport','jnews-','hasClass','script','delete','10257030lPKYAZ','initCustomEvent','supportsPassive','position','getStorage','setRequestHeader','set','floor','response','indexOf','innerText','attachEvent','docEl','10px','expiredStorage','object','src','slice','start','unwrap','getAttribute','offsetHeight','100px','mark','eventType','fps','clientHeight','fixed','querySelectorAll','setText','602022uRyQTA','End','100000','assets','29847884ADytTU','touchstart','passiveOption','function','now','getTime','splice','1px\x20solid\x20black','win','forEach','currentTime','prototype','has','get','complete','getNotice','backgroundColor','not\x20all','scrollTo','getElementsByTagName','2636522fcvqEX','textContent','noop','jnewsads','push','reduce','getBoundingClientRect','callback','media','4CofJJb','onreadystatechange','setStorage','11px','add','url','requestAnimationFrame','createElement','fpsTable','defer','clientWidth','parentNode','appendChild','remove','undefined','assign','jnewsDataStorage','stop','ajax','20px','10flbGjJ','boot','8748pkmxBR','getItem','test','X-Requested-With','1507773zKCrMt','8pXGkiP','jnewsHelper','webkitCancelAnimationFrame','length','fireOnce','winLoad','oRequestAnimationFrame','parse','au_scripts','dispatchEvent','contains','createEventObject','call','instr','getText','size','removeEventListener','readyState','POST','isVisible','setAttribute','425ENQfIN','webkitCancelRequestAnimationFrame','left','style[media]','_storage','getMessage','style','10.0.0','animateScroll','join','duration','isObjectSame','createEvent','addEventListener','replaceWith','classList','objKeys','fireEvent','width','getParents','expired','application/x-www-form-urlencoded','measure','getWidth','status','library','GET','easeInOutQuad','className','globalBody','boolean'];_0x25d8=function(){return _0x51d74f;};return _0x25d8();}</script>
+	<!-- This site is optimized with the Yoast SEO plugin v18.8 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>NECO postpones unity schools’ exams to May 7 – The Sun Nigeria</title>
+	<link rel="canonical" href="https://www.sunnewsonline.com/neco-postpones-unity-schools-exams-to-may-7/"/>
+	<meta property="og:locale" content="en_US"/>
+	<meta property="og:type" content="article"/>
+	<meta property="og:title" content="NECO postpones unity schools’ exams to May 7 – The Sun Nigeria"/>
+	<meta property="og:description" content="From John Adams, Minna The National Examinations Council (NECO) has postponed this year’s National Common Entrance Examination (NCEE) earlier scheduled to take place on the 23rd April, 2022 across the country. The examination body in a statement in Minna on Wednesday by the Head Information and Public Relation unity, Mallam Sani Azeez said the postponement […]"/>
+	<meta property="og:url" content="https://www.sunnewsonline.com/neco-postpones-unity-schools-exams-to-may-7/"/>
+	<meta property="og:site_name" content="The Sun Nigeria"/>
+	<meta property="article:publisher" content="http://www.facebook.com/thesunnigeria"/>
+	<meta property="article:published_time" content="2022-04-21T02:59:18+00:00"/>
+	<meta property="article:modified_time" content="2022-04-21T01:58:35+00:00"/>
+	<meta property="og:image" content="https://sunnewsonline.com/wp-content/uploads/2022/04/National-Examinations-Council-NECO.jpg"/>
+	<meta property="og:image:width" content="600"/>
+	<meta property="og:image:height" content="629"/>
+	<meta property="og:image:type" content="image/jpeg"/>
+	<meta name="twitter:card" content="summary_large_image"/>
+	<meta name="twitter:creator" content="@thesunnigeria"/>
+	<meta name="twitter:site" content="@thesunnigeria"/>
+	<meta name="twitter:label1" content="Written by"/>
+	<meta name="twitter:data1" content="Rapheal"/>
+	<meta name="twitter:label2" content="Est. reading time"/>
+	<meta name="twitter:data2" content="1 minute"/>
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.sunnewsonline.com/#website","url":"https://www.sunnewsonline.com/","name":"The Sun Nigeria","description":"| Voice of the Nation","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.sunnewsonline.com/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"ImageObject","inLanguage":"en-US","@id":"https://www.sunnewsonline.com/neco-postpones-unity-schools-exams-to-may-7/#primaryimage","url":"https://sunnewsonline.com/wp-content/uploads/2022/04/National-Examinations-Council-NECO.jpg","contentUrl":"https://sunnewsonline.com/wp-content/uploads/2022/04/National-Examinations-Council-NECO.jpg","width":600,"height":629},{"@type":"WebPage","@id":"https://www.sunnewsonline.com/neco-postpones-unity-schools-exams-to-may-7/#webpage","url":"https://www.sunnewsonline.com/neco-postpones-unity-schools-exams-to-may-7/","name":"NECO postpones unity schools’ exams to May 7 &ndash; The Sun Nigeria","isPartOf":{"@id":"https://www.sunnewsonline.com/#website"},"primaryImageOfPage":{"@id":"https://www.sunnewsonline.com/neco-postpones-unity-schools-exams-to-may-7/#primaryimage"},"datePublished":"2022-04-21T02:59:18+00:00","dateModified":"2022-04-21T01:58:35+00:00","author":{"@id":"https://www.sunnewsonline.com/#/schema/person/8ed66c6a87816ec0e41761cc86cd400b"},"breadcrumb":{"@id":"https://www.sunnewsonline.com/neco-postpones-unity-schools-exams-to-may-7/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://www.sunnewsonline.com/neco-postpones-unity-schools-exams-to-may-7/"]}]},{"@type":"BreadcrumbList","@id":"https://www.sunnewsonline.com/neco-postpones-unity-schools-exams-to-may-7/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.sunnewsonline.com/"},{"@type":"ListItem","position":2,"name":"NECO postpones unity schools’ exams to May 7"}]},{"@type":"Person","@id":"https://www.sunnewsonline.com/#/schema/person/8ed66c6a87816ec0e41761cc86cd400b","name":"Rapheal","image":{"@type":"ImageObject","inLanguage":"en-US","@id":"https://www.sunnewsonline.com/#/schema/person/image/","url":"https://secure.gravatar.com/avatar/c33a238eea86ab6d559e938a1636b8a0?s=96&d=mm&r=g","contentUrl":"https://secure.gravatar.com/avatar/c33a238eea86ab6d559e938a1636b8a0?s=96&d=mm&r=g","caption":"Rapheal"},"url":"https://www.sunnewsonline.com/author/rapheal/"}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel="dns-prefetch" href="//secure.gravatar.com"/>
+<link rel="dns-prefetch" href="//www.googletagmanager.com"/>
+<link rel="dns-prefetch" href="//fonts.googleapis.com"/>
+<link rel="dns-prefetch" href="//s.w.org"/>
+<link rel="dns-prefetch" href="//v0.wordpress.com"/>
+<link rel="dns-prefetch" href="//pagead2.googlesyndication.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com"/>
+<script type="text/javascript">
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.sunnewsonline.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.9.3"}};
+/*! This file is auto-generated */
+!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+</script>
+<!-- sunnewsonline.com is managing ads with Advanced Ads – https://wpadvancedads.com/ --><script id="sunne-ready">
+			window.advanced_ads_ready=function(e,a){a=a||"complete";var d=function(e){return"interactive"===a?"loading"!==e:"complete"===e};d(document.readyState)?e():document.addEventListener("readystatechange",(function(a){d(a.target.readyState)&&e()}),{once:"interactive"===a})},window.advanced_ads_ready_queue=window.advanced_ads_ready_queue||[];		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel="stylesheet" id="wp-block-library-css" href="https://www.sunnewsonline.com/wp-includes/css/dist/block-library/style.min.css?ver=5.9.3" type="text/css" media="all"/>
+<style id="wp-block-library-inline-css" type="text/css">
+.has-text-align-justify{text-align:justify;}
+</style>
+<link rel="stylesheet" id="mediaelement-css" href="https://www.sunnewsonline.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.16" type="text/css" media="all"/>
+<link rel="stylesheet" id="wp-mediaelement-css" href="https://www.sunnewsonline.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=5.9.3" type="text/css" media="all"/>
+<style id="global-styles-inline-css" type="text/css">
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+</style>
+<link rel="stylesheet" id="ads-for-wp-front-css-css" href="https://www.sunnewsonline.com/wp-content/plugins/ads-for-wp/public/assets/css/adsforwp-front.min.css?ver=1.9.18" type="text/css" media="all"/>
+<link rel="stylesheet" id="ufbl-custom-select-css-css" href="https://www.sunnewsonline.com/wp-content/plugins/ultimate-form-builder-lite/css/jquery.selectbox.css?ver=1.5.1" type="text/css" media="all"/>
+<link rel="stylesheet" id="ufbl-front-css-css" href="https://www.sunnewsonline.com/wp-content/plugins/ultimate-form-builder-lite/css/frontend.css?ver=1.5.1" type="text/css" media="all"/>
+<link rel="stylesheet" id="ppress-frontend-css" href="https://www.sunnewsonline.com/wp-content/plugins/wp-user-avatar/assets/css/frontend.min.css?ver=3.2.11" type="text/css" media="all"/>
+<link rel="stylesheet" id="ppress-flatpickr-css" href="https://www.sunnewsonline.com/wp-content/plugins/wp-user-avatar/assets/flatpickr/flatpickr.min.css?ver=3.2.11" type="text/css" media="all"/>
+<link rel="stylesheet" id="ppress-select2-css" href="https://www.sunnewsonline.com/wp-content/plugins/wp-user-avatar/assets/select2/select2.min.css?ver=5.9.3" type="text/css" media="all"/>
+<link rel="stylesheet" id="jnews-parent-style-css" href="https://www.sunnewsonline.com/wp-content/themes/jnews/style.css?ver=5.9.3" type="text/css" media="all"/>
+<link rel="stylesheet" id="js_composer_front-css" href="https://www.sunnewsonline.com/wp-content/plugins/js_composer/assets/css/js_composer.min.css?ver=6.9.0" type="text/css" media="all"/>
+<link rel="stylesheet" id="jeg_customizer_font-css" href="//fonts.googleapis.com/css?family=Roboto%3Aregular%2C700%7CRoboto+Condensed%3Aregular%2C700%7CPT+Serif%3Aregular%2Citalic%2C700%2C700italic&amp;display=swap&amp;ver=1.2.6" type="text/css" media="all"/>
+<link rel="stylesheet" id="jnews-frontend-css" href="https://www.sunnewsonline.com/wp-content/themes/jnews/assets/dist/frontend.min.css?ver=1.0.0" type="text/css" media="all"/>
+<link rel="stylesheet" id="jnews-js-composer-css" href="https://www.sunnewsonline.com/wp-content/themes/jnews/assets/css/js-composer-frontend.css?ver=1.0.0" type="text/css" media="all"/>
+<link rel="stylesheet" id="jnews-style-css" href="https://www.sunnewsonline.com/wp-content/themes/jnews-child/style.css?ver=1.0.0" type="text/css" media="all"/>
+<link rel="stylesheet" id="jnews-darkmode-css" href="https://www.sunnewsonline.com/wp-content/themes/jnews/assets/css/darkmode.css?ver=1.0.0" type="text/css" media="all"/>
+<link rel="stylesheet" id="jnews-scheme-css" href="https://www.sunnewsonline.com/wp-content/themes/jnews/data/import/citynews/scheme.css?ver=1.0.0" type="text/css" media="all"/>
+<link rel="stylesheet" id="jetpack_css-css" href="https://www.sunnewsonline.com/wp-content/plugins/jetpack/css/jetpack.css?ver=10.9" type="text/css" media="all"/>
+<link rel="stylesheet" id="jnews-social-login-style-css" href="https://www.sunnewsonline.com/wp-content/plugins/jnews-social-login/assets/css/plugin.css?ver=10.0.2" type="text/css" media="all"/>
+<link rel="stylesheet" id="jnews-select-share-css" href="https://www.sunnewsonline.com/wp-content/plugins/jnews-social-share/assets/css/plugin.css" type="text/css" media="all"/>
+<script type="text/javascript" src="https://www.sunnewsonline.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.0" id="jquery-core-js"></script>
+<script type="text/javascript" src="https://www.sunnewsonline.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2" id="jquery-migrate-js"></script>
+<script type="text/javascript" src="https://www.sunnewsonline.com/wp-content/plugins/ultimate-form-builder-lite/js/jquery.selectbox-0.2.min.js?ver=1.5.1" id="ufbl-custom-select-js-js"></script>
+<script type="text/javascript" id="ufbl-front-js-js-extra">
+/* <![CDATA[ */
+var frontend_js_obj = {"default_error_message":"This field is required","ajax_url":"https:\/\/www.sunnewsonline.com\/wp-admin\/admin-ajax.php","ajax_nonce":"e7532eaf85"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.sunnewsonline.com/wp-content/plugins/ultimate-form-builder-lite/js/frontend.js?ver=1.5.1" id="ufbl-front-js-js"></script>
+<script type="text/javascript" src="https://www.sunnewsonline.com/wp-content/plugins/wp-user-avatar/assets/flatpickr/flatpickr.min.js?ver=5.9.3" id="ppress-flatpickr-js"></script>
+<script type="text/javascript" src="https://www.sunnewsonline.com/wp-content/plugins/wp-user-avatar/assets/select2/select2.min.js?ver=5.9.3" id="ppress-select2-js"></script>
+
+<!-- Google Analytics snippet added by Site Kit -->
+<script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-75348301-1" id="google_gtagjs-js" async=""></script>
+<script type="text/javascript" id="google_gtagjs-js-after">
+window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
+gtag('set', 'linker', {"domains":["www.sunnewsonline.com"]} );
+gtag("js", new Date());
+gtag("set", "developer_id.dZTNiMT", true);
+gtag("config", "UA-75348301-1", {"anonymize_ip":true});
+</script>
+
+<!-- End Google Analytics snippet added by Site Kit -->
+<link rel="https://api.w.org/" href="https://www.sunnewsonline.com/wp-json/"/><link rel="alternate" type="application/json" href="https://www.sunnewsonline.com/wp-json/wp/v2/posts/883710"/><link rel="alternate" type="application/json+oembed" href="https://www.sunnewsonline.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.sunnewsonline.com%2Fneco-postpones-unity-schools-exams-to-may-7%2F"/>
+<link rel="alternate" type="text/xml+oembed" href="https://www.sunnewsonline.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.sunnewsonline.com%2Fneco-postpones-unity-schools-exams-to-may-7%2F&amp;format=xml"/>
+        <script type="text/javascript">              
+              jQuery(document).ready( function($) {    
+                  if ($('#adsforwp-hidden-block').length == 0 ) {
+                       $.getScript("https://www.sunnewsonline.com/front.js");
+                  }
+              });
+         </script>
+       			<meta property="fb:pages" content="139709372821659"/>
+			<meta name="generator" content="Site Kit by Google 1.74.0"/><script src="//increaserev.com/ads/dfpres/mcm.js"></script>
+<script> var IR_Tag="c";</script>    <script type="text/javascript">
+        function nxsPostToFav(obj){ obj.preventDefault;
+            var k = obj.target.split("-"); var nt = k[0]; var ii = k[1];  var pid = k[2];
+            var data = {  action:'nxs_snap_aj', nxsact: 'manPost', nt:nt, id: pid, nid: ii, et_load_builder_modules:1, _wpnonce: 'de0dd3ba30'};
+            jQuery('#nxsFavNoticeCnt').html('<p> Posting... </p>'); jQuery('#nxsFavNotice').modal({ fadeDuration: 50 });
+            jQuery.post('https://www.sunnewsonline.com/wp-admin/admin-ajax.php', data, function(response) { if (response=='') response = 'Message Posted';
+                jQuery('#nxsFavNoticeCnt').html('<p> ' + response + '</p>' +'<input type="button"  onclick="jQuery.modal.close();" class="bClose" value="Close" />');
+            });
+        }
+    </script><style type="text/css">img#wpstats{display:none}</style>
+	
+<!-- Google AdSense snippet added by Site Kit -->
+<meta name="google-adsense-platform-account" content="ca-host-pub-2644536267352236"/>
+<meta name="google-adsense-platform-domain" content="sitekit.withgoogle.com"/>
+<!-- End Google AdSense snippet added by Site Kit -->
+<meta name="generator" content="Powered by WPBakery Page Builder - drag and drop page builder for WordPress."/>
+
+<!-- Google AdSense snippet added by Site Kit -->
+<script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4454686729706359" crossorigin="anonymous" type="text/javascript"></script>
+
+<!-- End Google AdSense snippet added by Site Kit -->
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4454686729706359" crossorigin="anonymous"></script><script type="application/ld+json">{"@context":"http:\/\/schema.org","@type":"Organization","@id":"https:\/\/www.sunnewsonline.com\/#organization","url":"https:\/\/www.sunnewsonline.com\/","name":"","logo":{"@type":"ImageObject","url":""},"sameAs":["https:\/\/www.facebook.com\/TheSunNigeria\/","https:\/\/twitter.com\/thesunnigeria","https:\/\/www.youtube.com\/channel\/UC2cJnYydeAFBVAhT4L0ojZg","#"]}</script>
+<script type="application/ld+json">{"@context":"http:\/\/schema.org","@type":"WebSite","@id":"https:\/\/www.sunnewsonline.com\/#website","url":"https:\/\/www.sunnewsonline.com\/","name":"","potentialAction":{"@type":"SearchAction","target":"https:\/\/www.sunnewsonline.com\/?s={search_term_string}","query-input":"required name=search_term_string"}}</script>
+<link rel="icon" href="https://sunnewsonline.com/wp-content/uploads/2016/02/cropped-the_s_logo-1-32x32.png" sizes="32x32"/>
+<link rel="icon" href="https://sunnewsonline.com/wp-content/uploads/2016/02/cropped-the_s_logo-1-192x192.png" sizes="192x192"/>
+<link rel="apple-touch-icon" href="https://sunnewsonline.com/wp-content/uploads/2016/02/cropped-the_s_logo-1-180x180.png"/>
+<meta name="msapplication-TileImage" content="https://sunnewsonline.com/wp-content/uploads/2016/02/cropped-the_s_logo-1-270x270.png"/>
+<script>
+
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-75348301-1');
+</script><style id="jeg_dynamic_css" type="text/css" data-type="jeg_custom-css">.jeg_container, .jeg_content, .jeg_boxed .jeg_main .jeg_container, .jeg_autoload_separator { background-color : #f0f1f2; } body { --j-body-color : #666666; --j-accent-color : #ff0000; --j-alt-color : #ff0000; --j-heading-color : #000000; --j-entry-link-color : #ff0000; } body,.jeg_newsfeed_list .tns-outer .tns-controls button,.jeg_filter_button,.owl-carousel .owl-nav div,.jeg_readmore,.jeg_hero_style_7 .jeg_post_meta a,.widget_calendar thead th,.widget_calendar tfoot a,.jeg_socialcounter a,.entry-header .jeg_meta_like a,.entry-header .jeg_meta_comment a,.entry-header .jeg_meta_donation a,.entry-header .jeg_meta_bookmark a,.entry-content tbody tr:hover,.entry-content th,.jeg_splitpost_nav li:hover a,#breadcrumbs a,.jeg_author_socials a:hover,.jeg_footer_content a,.jeg_footer_bottom a,.jeg_cartcontent,.woocommerce .woocommerce-breadcrumb a { color : #666666; } a, .jeg_menu_style_5>li>a:hover, .jeg_menu_style_5>li.sfHover>a, .jeg_menu_style_5>li.current-menu-item>a, .jeg_menu_style_5>li.current-menu-ancestor>a, .jeg_navbar .jeg_menu:not(.jeg_main_menu)>li>a:hover, .jeg_midbar .jeg_menu:not(.jeg_main_menu)>li>a:hover, .jeg_side_tabs li.active, .jeg_block_heading_5 strong, .jeg_block_heading_6 strong, .jeg_block_heading_7 strong, .jeg_block_heading_8 strong, .jeg_subcat_list li a:hover, .jeg_subcat_list li button:hover, .jeg_pl_lg_7 .jeg_thumb .jeg_post_category a, .jeg_pl_xs_2:before, .jeg_pl_xs_4 .jeg_postblock_content:before, .jeg_postblock .jeg_post_title a:hover, .jeg_hero_style_6 .jeg_post_title a:hover, .jeg_sidefeed .jeg_pl_xs_3 .jeg_post_title a:hover, .widget_jnews_popular .jeg_post_title a:hover, .jeg_meta_author a, .widget_archive li a:hover, .widget_pages li a:hover, .widget_meta li a:hover, .widget_recent_entries li a:hover, .widget_rss li a:hover, .widget_rss cite, .widget_categories li a:hover, .widget_categories li.current-cat>a, #breadcrumbs a:hover, .jeg_share_count .counts, .commentlist .bypostauthor>.comment-body>.comment-author>.fn, span.required, .jeg_review_title, .bestprice .price, .authorlink a:hover, .jeg_vertical_playlist .jeg_video_playlist_play_icon, .jeg_vertical_playlist .jeg_video_playlist_item.active .jeg_video_playlist_thumbnail:before, .jeg_horizontal_playlist .jeg_video_playlist_play, .woocommerce li.product .pricegroup .button, .widget_display_forums li a:hover, .widget_display_topics li:before, .widget_display_replies li:before, .widget_display_views li:before, .bbp-breadcrumb a:hover, .jeg_mobile_menu li.sfHover>a, .jeg_mobile_menu li a:hover, .split-template-6 .pagenum, .jeg_mobile_menu_style_5>li>a:hover, .jeg_mobile_menu_style_5>li.sfHover>a, .jeg_mobile_menu_style_5>li.current-menu-item>a, .jeg_mobile_menu_style_5>li.current-menu-ancestor>a { color : #ff0000; } .jeg_menu_style_1>li>a:before, .jeg_menu_style_2>li>a:before, .jeg_menu_style_3>li>a:before, .jeg_side_toggle, .jeg_slide_caption .jeg_post_category a, .jeg_slider_type_1_wrapper .tns-controls button.tns-next, .jeg_block_heading_1 .jeg_block_title span, .jeg_block_heading_2 .jeg_block_title span, .jeg_block_heading_3, .jeg_block_heading_4 .jeg_block_title span, .jeg_block_heading_6:after, .jeg_pl_lg_box .jeg_post_category a, .jeg_pl_md_box .jeg_post_category a, .jeg_readmore:hover, .jeg_thumb .jeg_post_category a, .jeg_block_loadmore a:hover, .jeg_postblock.alt .jeg_block_loadmore a:hover, .jeg_block_loadmore a.active, .jeg_postblock_carousel_2 .jeg_post_category a, .jeg_heroblock .jeg_post_category a, .jeg_pagenav_1 .page_number.active, .jeg_pagenav_1 .page_number.active:hover, input[type="submit"], .btn, .button, .widget_tag_cloud a:hover, .popularpost_item:hover .jeg_post_title a:before, .jeg_splitpost_4 .page_nav, .jeg_splitpost_5 .page_nav, .jeg_post_via a:hover, .jeg_post_source a:hover, .jeg_post_tags a:hover, .comment-reply-title small a:before, .comment-reply-title small a:after, .jeg_storelist .productlink, .authorlink li.active a:before, .jeg_footer.dark .socials_widget:not(.nobg) a:hover .fa, div.jeg_breakingnews_title, .jeg_overlay_slider_bottom_wrapper .tns-controls button, .jeg_overlay_slider_bottom_wrapper .tns-controls button:hover, .jeg_vertical_playlist .jeg_video_playlist_current, .woocommerce span.onsale, .woocommerce #respond input#submit:hover, .woocommerce a.button:hover, .woocommerce button.button:hover, .woocommerce input.button:hover, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .jeg_popup_post .caption, .jeg_footer.dark input[type="submit"], .jeg_footer.dark .btn, .jeg_footer.dark .button, .footer_widget.widget_tag_cloud a:hover, .jeg_inner_content .content-inner .jeg_post_category a:hover, #buddypress .standard-form button, #buddypress a.button, #buddypress input[type="submit"], #buddypress input[type="button"], #buddypress input[type="reset"], #buddypress ul.button-nav li a, #buddypress .generic-button a, #buddypress .generic-button button, #buddypress .comment-reply-link, #buddypress a.bp-title-button, #buddypress.buddypress-wrap .members-list li .user-update .activity-read-more a, div#buddypress .standard-form button:hover, div#buddypress a.button:hover, div#buddypress input[type="submit"]:hover, div#buddypress input[type="button"]:hover, div#buddypress input[type="reset"]:hover, div#buddypress ul.button-nav li a:hover, div#buddypress .generic-button a:hover, div#buddypress .generic-button button:hover, div#buddypress .comment-reply-link:hover, div#buddypress a.bp-title-button:hover, div#buddypress.buddypress-wrap .members-list li .user-update .activity-read-more a:hover, #buddypress #item-nav .item-list-tabs ul li a:before, .jeg_inner_content .jeg_meta_container .follow-wrapper a { background-color : #ff0000; } .jeg_block_heading_7 .jeg_block_title span, .jeg_readmore:hover, .jeg_block_loadmore a:hover, .jeg_block_loadmore a.active, .jeg_pagenav_1 .page_number.active, .jeg_pagenav_1 .page_number.active:hover, .jeg_pagenav_3 .page_number:hover, .jeg_prevnext_post a:hover h3, .jeg_overlay_slider .jeg_post_category, .jeg_sidefeed .jeg_post.active, .jeg_vertical_playlist.jeg_vertical_playlist .jeg_video_playlist_item.active .jeg_video_playlist_thumbnail img, .jeg_horizontal_playlist .jeg_video_playlist_item.active { border-color : #ff0000; } .jeg_tabpost_nav li.active, .woocommerce div.product .woocommerce-tabs ul.tabs li.active, .jeg_mobile_menu_style_1>li.current-menu-item a, .jeg_mobile_menu_style_1>li.current-menu-ancestor a, .jeg_mobile_menu_style_2>li.current-menu-item::after, .jeg_mobile_menu_style_2>li.current-menu-ancestor::after, .jeg_mobile_menu_style_3>li.current-menu-item::before, .jeg_mobile_menu_style_3>li.current-menu-ancestor::before { border-bottom-color : #ff0000; } .jeg_post_meta .fa, .jeg_post_meta .jpwt-icon, .entry-header .jeg_post_meta .fa, .jeg_review_stars, .jeg_price_review_list { color : #ff0000; } .jeg_share_button.share-float.share-monocrhome a { background-color : #ff0000; } h1,h2,h3,h4,h5,h6,.jeg_post_title a,.entry-header .jeg_post_title,.jeg_hero_style_7 .jeg_post_title a,.jeg_block_title,.jeg_splitpost_bar .current_title,.jeg_video_playlist_title,.gallery-caption,.jeg_push_notification_button>a.button { color : #000000; } .split-template-9 .pagenum, .split-template-10 .pagenum, .split-template-11 .pagenum, .split-template-12 .pagenum, .split-template-13 .pagenum, .split-template-15 .pagenum, .split-template-18 .pagenum, .split-template-20 .pagenum, .split-template-19 .current_title span, .split-template-20 .current_title span { background-color : #000000; } .entry-content .content-inner a { color : #ff0000; } .jeg_midbar { height : 90px; } .jeg_midbar, .jeg_midbar.dark { background-color : #ff0000; } .jeg_header .jeg_bottombar.jeg_navbar_wrapper:not(.jeg_navbar_boxed), .jeg_header .jeg_bottombar.jeg_navbar_boxed .jeg_nav_row { background : #ffffff; } .jeg_header .jeg_bottombar, .jeg_header .jeg_bottombar.jeg_navbar_dark, .jeg_bottombar.jeg_navbar_boxed .jeg_nav_row, .jeg_bottombar.jeg_navbar_dark.jeg_navbar_boxed .jeg_nav_row { border-top-width : 1px; } .jeg_header_wrapper .jeg_bottombar, .jeg_header_wrapper .jeg_bottombar.jeg_navbar_dark, .jeg_bottombar.jeg_navbar_boxed .jeg_nav_row, .jeg_bottombar.jeg_navbar_dark.jeg_navbar_boxed .jeg_nav_row { border-top-color : #000000; } .jeg_stickybar, .jeg_stickybar.dark, .jeg_stickybar.jeg_navbar_boxed .jeg_nav_row { border-bottom-color : #000000; } .jeg_mobile_midbar, .jeg_mobile_midbar.dark { background : #ff0000; } .jeg_header .jeg_vertical_menu.jeg_vertical_menu_1 a { border-top-color : #ff0000; } .jeg_header .jeg_vertical_menu.jeg_vertical_menu_2 a { border-top-color : #ff0000; } .jeg_header .jeg_vertical_menu.jeg_vertical_menu_3 { border-top-color : #ff0000; } .jeg_header .jeg_vertical_menu.jeg_vertical_menu_3 a { border-top-color : #ff0000; } .jeg_header .jeg_vertical_menu.jeg_vertical_menu_4 { border-top-color : #ff0000; } .jeg_navbar_mobile_wrapper .jeg_nav_item a.jeg_mobile_toggle, .jeg_navbar_mobile_wrapper .dark .jeg_nav_item a.jeg_mobile_toggle { color : #000000; } .jeg_navbar_mobile .jeg_search_wrapper .jeg_search_toggle, .jeg_navbar_mobile .dark .jeg_search_wrapper .jeg_search_toggle { color : #000000; } .jeg_header .jeg_menu.jeg_main_menu > li > a { color : #ff0000; } .jeg_navbar_wrapper .sf-arrows .sf-with-ul:after { color : #ff0000; } .jeg_footer_content,.jeg_footer.dark .jeg_footer_content { background-color : #ffffff; } .jeg_footer .jeg_footer_heading h3,.jeg_footer.dark .jeg_footer_heading h3,.jeg_footer .widget h2,.jeg_footer .footer_dark .widget h2 { color : #ff0000; } .jeg_footer_secondary,.jeg_footer.dark .jeg_footer_secondary { border-top-color : #ff00000; } .jeg_footer_2 .footer_column,.jeg_footer_2.dark .footer_column { border-right-color : #ff00000; } .jeg_footer_5 .jeg_footer_social, .jeg_footer_5 .footer_column, .jeg_footer_5 .jeg_footer_secondary,.jeg_footer_5.dark .jeg_footer_social,.jeg_footer_5.dark .footer_column,.jeg_footer_5.dark .jeg_footer_secondary { border-color : #ff00000; } .jeg_footer_bottom a,.jeg_footer.dark .jeg_footer_bottom a,.jeg_footer_secondary a,.jeg_footer.dark .jeg_footer_secondary a,.jeg_footer_sidecontent .jeg_footer_primary a,.jeg_footer_sidecontent.dark .jeg_footer_primary a { color : #333333; } .jeg_menu_footer a,.jeg_footer.dark .jeg_menu_footer a,.jeg_footer_sidecontent .jeg_footer_primary .col-md-7 .jeg_menu_footer a { color : #ff0000; } body,input,textarea,select,.chosen-container-single .chosen-single,.btn,.button { font-family: Roboto,Helvetica,Arial,sans-serif; } .jeg_header, .jeg_mobile_wrapper { font-family: "Roboto Condensed",Helvetica,Arial,sans-serif; } .jeg_post_title, .entry-header .jeg_post_title, .jeg_single_tpl_2 .entry-header .jeg_post_title, .jeg_single_tpl_3 .entry-header .jeg_post_title, .jeg_single_tpl_6 .entry-header .jeg_post_title, .jeg_content .jeg_custom_title_wrapper .jeg_post_title { font-family: "Roboto Condensed",Helvetica,Arial,sans-serif; } .jeg_post_excerpt p, .content-inner p { font-family: "PT Serif",Helvetica,Arial,sans-serif; } .jeg_heroblock .jeg_post_category a.category-business,.jeg_thumb .jeg_post_category a.category-business,.jeg_pl_lg_box .jeg_post_category a.category-business,.jeg_pl_md_box .jeg_post_category a.category-business,.jeg_postblock_carousel_2 .jeg_post_category a.category-business,.jeg_slide_caption .jeg_post_category a.category-business { background-color : #2979ff; border-color : #2979ff; } .jeg_heroblock .jeg_post_category a.category-culture,.jeg_thumb .jeg_post_category a.category-culture,.jeg_pl_lg_box .jeg_post_category a.category-culture,.jeg_pl_md_box .jeg_post_category a.category-culture,.jeg_postblock_carousel_2 .jeg_post_category a.category-culture,.jeg_slide_caption .jeg_post_category a.category-culture { background-color : #b38a58; border-color : #b38a58; } .jeg_heroblock .jeg_post_category a.category-lifestyle,.jeg_thumb .jeg_post_category a.category-lifestyle,.jeg_pl_lg_box .jeg_post_category a.category-lifestyle,.jeg_pl_md_box .jeg_post_category a.category-lifestyle,.jeg_postblock_carousel_2 .jeg_post_category a.category-lifestyle,.jeg_slide_caption .jeg_post_category a.category-lifestyle { background-color : #ff4081; border-color : #ff4081; } .jeg_heroblock .jeg_post_category a.category-national,.jeg_thumb .jeg_post_category a.category-national,.jeg_pl_lg_box .jeg_post_category a.category-national,.jeg_pl_md_box .jeg_post_category a.category-national,.jeg_postblock_carousel_2 .jeg_post_category a.category-national,.jeg_slide_caption .jeg_post_category a.category-national { background-color : #95c623; border-color : #95c623; } .jeg_heroblock .jeg_post_category a.category-opinion,.jeg_thumb .jeg_post_category a.category-opinion,.jeg_pl_lg_box .jeg_post_category a.category-opinion,.jeg_pl_md_box .jeg_post_category a.category-opinion,.jeg_postblock_carousel_2 .jeg_post_category a.category-opinion,.jeg_slide_caption .jeg_post_category a.category-opinion { background-color : #ffba08; border-color : #ffba08; } .jeg_heroblock .jeg_post_category a.category-politics,.jeg_thumb .jeg_post_category a.category-politics,.jeg_pl_lg_box .jeg_post_category a.category-politics,.jeg_pl_md_box .jeg_post_category a.category-politics,.jeg_postblock_carousel_2 .jeg_post_category a.category-politics,.jeg_slide_caption .jeg_post_category a.category-politics { background-color : #d32f2f; border-color : #d32f2f; } .jeg_heroblock .jeg_post_category a.category-sports,.jeg_thumb .jeg_post_category a.category-sports,.jeg_pl_lg_box .jeg_post_category a.category-sports,.jeg_pl_md_box .jeg_post_category a.category-sports,.jeg_postblock_carousel_2 .jeg_post_category a.category-sports,.jeg_slide_caption .jeg_post_category a.category-sports { background-color : #26c0ef; border-color : #26c0ef; } .jeg_heroblock .jeg_post_category a.category-travel,.jeg_thumb .jeg_post_category a.category-travel,.jeg_pl_lg_box .jeg_post_category a.category-travel,.jeg_pl_md_box .jeg_post_category a.category-travel,.jeg_postblock_carousel_2 .jeg_post_category a.category-travel,.jeg_slide_caption .jeg_post_category a.category-travel { background-color : #7b1fa2; border-color : #7b1fa2; } .jeg_heroblock .jeg_post_category a.category-world,.jeg_thumb .jeg_post_category a.category-world,.jeg_pl_lg_box .jeg_post_category a.category-world,.jeg_pl_md_box .jeg_post_category a.category-world,.jeg_postblock_carousel_2 .jeg_post_category a.category-world,.jeg_slide_caption .jeg_post_category a.category-world { background-color : #136f63; border-color : #136f63; } @media only screen and (min-width : 1200px) { .container, .jeg_vc_content > .vc_row, .jeg_vc_content > .vc_element > .vc_row, .jeg_vc_content > .vc_row[data-vc-full-width="true"]:not([data-vc-stretch-content="true"]) > .jeg-vc-wrapper, .jeg_vc_content > .vc_element > .vc_row[data-vc-full-width="true"]:not([data-vc-stretch-content="true"]) > .jeg-vc-wrapper { max-width : 1370px; } .elementor-section.elementor-section-boxed > .elementor-container { max-width : 1370px; }  } @media only screen and (min-width : 1441px) { .container, .jeg_vc_content > .vc_row, .jeg_vc_content > .vc_element > .vc_row, .jeg_vc_content > .vc_row[data-vc-full-width="true"]:not([data-vc-stretch-content="true"]) > .jeg-vc-wrapper, .jeg_vc_content > .vc_element > .vc_row[data-vc-full-width="true"]:not([data-vc-stretch-content="true"]) > .jeg-vc-wrapper { max-width : 1380px; } .elementor-section.elementor-section-boxed > .elementor-container { max-width : 1380px; }  } </style><style type="text/css">
+					.no_thumbnail .jeg_thumb,
+					.thumbnail-container.no_thumbnail {
+					    display: none !important;
+					}
+					.jeg_search_result .jeg_pl_xs_3.no_thumbnail .jeg_postblock_content,
+					.jeg_sidefeed .jeg_pl_xs_3.no_thumbnail .jeg_postblock_content,
+					.jeg_pl_sm.no_thumbnail .jeg_postblock_content {
+					    margin-left: 0;
+					}
+					.jeg_postblock_11 .no_thumbnail .jeg_postblock_content,
+					.jeg_postblock_12 .no_thumbnail .jeg_postblock_content,
+					.jeg_postblock_12.jeg_col_3o3 .no_thumbnail .jeg_postblock_content  {
+					    margin-top: 0;
+					}
+					.jeg_postblock_15 .jeg_pl_md_box.no_thumbnail .jeg_postblock_content,
+					.jeg_postblock_19 .jeg_pl_md_box.no_thumbnail .jeg_postblock_content,
+					.jeg_postblock_24 .jeg_pl_md_box.no_thumbnail .jeg_postblock_content,
+					.jeg_sidefeed .jeg_pl_md_box .jeg_postblock_content {
+					    position: relative;
+					}
+					.jeg_postblock_carousel_2 .no_thumbnail .jeg_post_title a,
+					.jeg_postblock_carousel_2 .no_thumbnail .jeg_post_title a:hover,
+					.jeg_postblock_carousel_2 .no_thumbnail .jeg_post_meta .fa {
+					    color: #212121 !important;
+					} 
+					.jnews-dark-mode .jeg_postblock_carousel_2 .no_thumbnail .jeg_post_title a,
+					.jnews-dark-mode .jeg_postblock_carousel_2 .no_thumbnail .jeg_post_title a:hover,
+					.jnews-dark-mode .jeg_postblock_carousel_2 .no_thumbnail .jeg_post_meta .fa {
+					    color: #fff !important;
+					} 
+				</style><!-- ## NXS/OG ## --><!-- ## NXSOGTAGS ## --><!-- ## NXS/OG ## -->
+
+<noscript><style> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript><script type="text/javascript">var ezouid = "1";</script><base href="https://www.sunnewsonline.com/neco-postpones-unity-schools-exams-to-may-7/"><script type='text/javascript'>
+var ezoTemplate = 'old_site_noads';
+if(typeof ezouid == 'undefined')
+{
+    var ezouid = 'none';
+}
+var ezoFormfactor = '1';
+var ezo_elements_to_check = Array();
+</script><!-- START EZHEAD -->
+<script data-ezscrex="false" type='text/javascript'>
+var soc_app_id = '0';
+var did = 82977;
+var ezdomain = 'sunnewsonline.com';
+var ezoicSearchable = 1;
+</script>
+<!--{jquery}-->
+<!-- END EZHEAD -->
+<script data-ezscrex="false" type="text/javascript" data-cfasync="false">var _ezaq = {"ab_test_id":"mod35-c","ad_cache_level":0,"ad_lazyload_version":0,"ad_load_version":0,"city":"","country":"NG","days_since_last_visit":-1,"domain_id":82977,"engaged_time_visit":0,"ezcache_level":0,"ezcache_skip_code":0,"form_factor_id":1,"framework_id":1,"is_return_visitor":false,"is_sitespeed":0,"last_page_load":"","last_pageview_id":"","lt_cache_level":0,"metro_code":0,"page_ad_positions":"","page_view_count":0,"page_view_id":"a307bbf4-2cf8-4c67-6810-e4c5dbaa9dc1","position_selection_id":0,"postal_code":"","pv_event_count":0,"referring_domain":"google.com","response_size_orig":177556,"response_time_orig":0,"serverid":"54.196.150.220:15763","state":"","t_epoch":1652289499,"template_id":120,"time_on_site_visit":0,"url":"https://www.sunnewsonline.com/neco-postpones-unity-schools-exams-to-may-7/","user_id":0,"visit_uuid":"98ff06b5-f2dd-4fb0-7664-ca2707751264","weather_precipitation":0,"weather_summary":"","weather_temperature":0,"word_count":1099,"worst_bad_word_level":1};var _ezExtraQueries = "&ez_orig=1";</script><script data-ezscrex='false' data-cfasync='false' type="text/javascript">var ezWp = true;</script>
+<script data-ezscrex='false' data-pagespeed-no-defer data-cfasync='false'>
+function create_ezolpl(pvID, rv) {
+    var d = new Date();
+    d.setTime(d.getTime() + (365*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    __ez.ck.setByCat("ezux_lpl_82977=" + new Date().getTime() + "|" + pvID + "|" + rv + "; " + expires, 3);
+}
+function attach_ezolpl(pvID, rv) {
+    if (document.readyState === "complete") {
+        create_ezolpl(pvID, rv);
+    }
+    if(window.attachEvent) {
+        window.attachEvent("onload", create_ezolpl, pvID, rv);
+    } else {
+        if(window.onload) {
+            var curronload = window.onload;
+            var newonload = function(evt) {
+                curronload(evt);
+                create_ezolpl(pvID, rv);
+            };
+            window.onload = newonload;
+        } else {
+            window.onload = create_ezolpl.bind(null, pvID, rv);
+        }
+    }
+}
+
+__ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["a307bbf4-2cf8-4c67-6810-e4c5dbaa9dc1", "false"], false, ['/detroitchicago/boise.js'], true, false, false, false);
+</script>
+<script type="text/javascript">var _audins_dom="sunnewsonline_com",_audins_did=82977;__ez.queue.addFile('/detroitchicago/cmbv2.js', '//g.ezoic.net/detroitchicago/cmbv2.js?gcb=195-0&cb=04-1y02-5y06-12y07-1y19-5y0b-5y0d-14y13-3y17-4y1c-2y21-3y55-1&cmbcb=64&sj=x04x02x06x07x19x0bx0dx13x17x1cx21x55', true, [], true, false, true, false);</script>
+<script type="text/javascript" defer>__ez.queue.addFile('/detroitchicago/cmbdv2.js', '//g.ezoic.net/detroitchicago/cmbdv2.js?gcb=195-0&cb=03-5y0c-5y18-4&cmbcb=64&sj=x03x0cx18', true, ['/detroitchicago/cmbv2.js'], true, false, true, false);</script><script async src='/cdn-cgi/challenge-platform/h/b/scripts/invisible.js?ts=1652288400'></script></head>
+<body class="post-template-default single single-post postid-883710 single-format-standard wp-embed-responsive jeg_toggle_light jeg_single_tpl_1 jnews jnews_boxed_container jnews_boxed_container_shadow jsc_normal wpb-js-composer js-comp-ver-6.9.0 vc_responsive aa-prefix-sunne-">
+
+    
+    
+    <div class="jeg_ad jeg_ad_top jnews_header_top_ads">
+        <div class="ads-wrapper  "><div class="ads_code"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- TheSun_bottowLeaderboard -->
+<ins class="adsbygoogle" style="display:inline-block;width:970px;height:90px" data-ad-client="ca-pub-4454686729706359" data-ad-slot="7302666336"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div><div class="ads-text">ADVERTISEMENT</div></div>    </div>
+
+    <!-- The Main Wrapper
+    ============================================= -->
+    <div class="jeg_viewport">
+
+        
+        <div class="jeg_header_wrapper">
+            <div class="jeg_header_instagram_wrapper">
+    </div>
+
+<!-- HEADER -->
+<div class="jeg_header full">
+    <div class="jeg_midbar jeg_container normal">
+    <div class="container">
+        <div class="jeg_nav_row">
+            
+                <div class="jeg_nav_col jeg_nav_left jeg_nav_grow">
+                    <div class="item_wrap jeg_nav_alignleft">
+                                            </div>
+                </div>
+
+                
+                <div class="jeg_nav_col jeg_nav_center jeg_nav_normal">
+                    <div class="item_wrap jeg_nav_aligncenter">
+                        <div class="jeg_nav_item jeg_logo jeg_desktop_logo">
+			<div class="site-title">
+			<a href="https://www.sunnewsonline.com/" style="padding: 0px 0px 0px 0px;">
+				<img class="jeg_logo_img" src="https://sunnewsonline.com/wp-content/uploads/2018/12/thesunnews-logo-latest.gif" srcset="https://sunnewsonline.com/wp-content/uploads/2018/12/thesunnews-logo-latest.gif 1x, https://sunnewsonline.com/wp-content/uploads/2018/12/thesunnews-logo-latest.gif 2x" alt="The Sun Nigeria" data-light-src="https://sunnewsonline.com/wp-content/uploads/2018/12/thesunnews-logo-latest.gif" data-light-srcset="https://sunnewsonline.com/wp-content/uploads/2018/12/thesunnews-logo-latest.gif 1x, https://sunnewsonline.com/wp-content/uploads/2018/12/thesunnews-logo-latest.gif 2x" data-dark-src="https://www.sunnewsonline.com/wp-content/themes/jnews/assets/img/logo_darkmode.png" data-dark-srcset="https://www.sunnewsonline.com/wp-content/themes/jnews/assets/img/logo_darkmode.png 1x, https://www.sunnewsonline.com/wp-content/themes/jnews/assets/img/logo_darkmode@2x.png 2x"/>			</a>
+		</div>
+	</div>
+                    </div>
+                </div>
+
+                
+                <div class="jeg_nav_col jeg_nav_right jeg_nav_grow">
+                    <div class="item_wrap jeg_nav_alignright">
+                                            </div>
+                </div>
+
+                        </div>
+    </div>
+</div><div class="jeg_bottombar jeg_navbar jeg_container jeg_navbar_wrapper jeg_navbar_normal jeg_navbar_normal">
+    <div class="container">
+        <div class="jeg_nav_row">
+            
+                <div class="jeg_nav_col jeg_nav_left jeg_nav_grow">
+                    <div class="item_wrap jeg_nav_alignleft">
+                        <div class="jeg_nav_item jeg_nav_icon">
+    <a href="#" class="toggle_btn jeg_mobile_toggle">
+    	<span></span><span></span><span></span>
+    </a>
+</div>                    </div>
+                </div>
+
+                
+                <div class="jeg_nav_col jeg_nav_center jeg_nav_normal">
+                    <div class="item_wrap jeg_nav_aligncenter">
+                        <div class="jeg_nav_item jeg_main_menu_wrapper">
+<div class="jeg_mainmenu_wrap"><ul class="jeg_menu jeg_main_menu jeg_menu_style_1" data-animation="animate"><li id="menu-item-252978" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-252978 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/home-1/">Home</a></li>
+<li id="menu-item-252985" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-252985 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/national/">National</a></li>
+<li id="menu-item-253028" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-253028 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/">Columns</a>
+<ul class="sub-menu">
+	<li id="menu-item-253007" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253007 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/broken-tongues/">Broken Tongues</a></li>
+	<li id="menu-item-253008" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253008 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/capital-matters/">Capital Matters</a></li>
+	<li id="menu-item-253009" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253009 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/diabetes-corner/">Diabetes Corner</a></li>
+	<li id="menu-item-253010" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253010 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/duro-onabule/">Duro Onabule</a></li>
+	<li id="menu-item-253011" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253011 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/femi-adesina/">Femi Adesina</a></li>
+	<li id="menu-item-253012" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253012 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/frank-talk/">Frank Talk</a></li>
+	<li id="menu-item-253013" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253013 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/funke-egbemode/">Funke Egbemode</a></li>
+	<li id="menu-item-253014" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253014 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/insights/">Insights</a></li>
+	<li id="menu-item-253015" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253015 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/kalu-leadership-series/">Kalu Leadership Series</a></li>
+	<li id="menu-item-253016" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253016 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/kunle-solaja/">Kunle Solaja</a></li>
+	<li id="menu-item-253018" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253018 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/offside-musings/">Offside Musings</a></li>
+	<li id="menu-item-253019" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253019 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/pressclips/">PressClips</a></li>
+	<li id="menu-item-253020" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253020 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/public-sphere/">Public Sphere</a></li>
+	<li id="menu-item-253021" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253021 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/ralph-egbu/">Ralph Egbu</a></li>
+	<li id="menu-item-253022" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253022 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/shola-oshunkeye/">Shola Oshunkeye</a></li>
+	<li id="menu-item-253023" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253023 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/sideview/">Sideview</a></li>
+	<li id="menu-item-253024" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253024 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/the-flipside-eric-osagie/">The Flipside – Eric Osagie</a></li>
+	<li id="menu-item-253045" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253045 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/tola-adeniyi/">Tola Adeniyi</a></li>
+</ul>
+</li>
+<li id="menu-item-252984" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-252984 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/business/">Business</a></li>
+<li id="menu-item-253044" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253044 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/politics/">Politics</a></li>
+<li id="menu-item-253030" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253030 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/entertainment/">Entertainment</a></li>
+<li id="menu-item-253029" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253029 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/the-sun-tv/">The Sun TV</a></li>
+<li id="menu-item-253031" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253031 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/sporting-sun/">Sporting Sun</a></li>
+</ul></div></div>
+                    </div>
+                </div>
+
+                
+                <div class="jeg_nav_col jeg_nav_right jeg_nav_grow">
+                    <div class="item_wrap jeg_nav_alignright">
+                        <!-- Search Icon -->
+<div class="jeg_nav_item jeg_search_wrapper search_icon jeg_search_popup_expand">
+    <a href="#" class="jeg_search_toggle"><i class="fa fa-search"></i></a>
+    <form action="https://www.sunnewsonline.com/" method="get" class="jeg_search_form" target="_top">
+    <input name="s" class="jeg_search_input" placeholder="Search..." type="text" value="" autocomplete="off"/>
+    <button aria-label="Search Button" type="submit" class="jeg_search_button btn"><i class="fa fa-search"></i></button>
+</form>
+<!-- jeg_search_hide with_result no_result -->
+<div class="jeg_search_result jeg_search_hide with_result">
+    <div class="search-result-wrapper">
+    </div>
+    <div class="search-link search-noresult">
+        No Result    </div>
+    <div class="search-link search-all-button">
+        <i class="fa fa-search"></i> View All Result    </div>
+</div></div>                    </div>
+                </div>
+
+                        </div>
+    </div>
+</div></div><!-- /.jeg_header -->        </div>
+
+        <div class="jeg_header_sticky">
+            <div class="sticky_blankspace"></div>
+<div class="jeg_header full">
+    <div class="jeg_container">
+        <div data-mode="scroll" class="jeg_stickybar jeg_navbar jeg_navbar_wrapper jeg_navbar_normal jeg_navbar_normal">
+            <div class="container">
+    <div class="jeg_nav_row">
+        
+            <div class="jeg_nav_col jeg_nav_left jeg_nav_grow">
+                <div class="item_wrap jeg_nav_alignleft">
+                    <div class="jeg_nav_item jeg_nav_icon">
+    <a href="#" class="toggle_btn jeg_mobile_toggle">
+    	<span></span><span></span><span></span>
+    </a>
+</div>                </div>
+            </div>
+
+            
+            <div class="jeg_nav_col jeg_nav_center jeg_nav_normal">
+                <div class="item_wrap jeg_nav_aligncenter">
+                    <div class="jeg_nav_item jeg_main_menu_wrapper">
+<div class="jeg_mainmenu_wrap"><ul class="jeg_menu jeg_main_menu jeg_menu_style_1" data-animation="animate"><li id="menu-item-252978" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-252978 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/home-1/">Home</a></li>
+<li id="menu-item-252985" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-252985 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/national/">National</a></li>
+<li id="menu-item-253028" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-253028 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/">Columns</a>
+<ul class="sub-menu">
+	<li id="menu-item-253007" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253007 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/broken-tongues/">Broken Tongues</a></li>
+	<li id="menu-item-253008" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253008 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/capital-matters/">Capital Matters</a></li>
+	<li id="menu-item-253009" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253009 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/diabetes-corner/">Diabetes Corner</a></li>
+	<li id="menu-item-253010" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253010 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/duro-onabule/">Duro Onabule</a></li>
+	<li id="menu-item-253011" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253011 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/femi-adesina/">Femi Adesina</a></li>
+	<li id="menu-item-253012" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253012 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/frank-talk/">Frank Talk</a></li>
+	<li id="menu-item-253013" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253013 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/funke-egbemode/">Funke Egbemode</a></li>
+	<li id="menu-item-253014" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253014 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/insights/">Insights</a></li>
+	<li id="menu-item-253015" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253015 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/kalu-leadership-series/">Kalu Leadership Series</a></li>
+	<li id="menu-item-253016" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253016 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/kunle-solaja/">Kunle Solaja</a></li>
+	<li id="menu-item-253018" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253018 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/offside-musings/">Offside Musings</a></li>
+	<li id="menu-item-253019" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253019 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/pressclips/">PressClips</a></li>
+	<li id="menu-item-253020" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253020 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/public-sphere/">Public Sphere</a></li>
+	<li id="menu-item-253021" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253021 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/ralph-egbu/">Ralph Egbu</a></li>
+	<li id="menu-item-253022" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253022 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/shola-oshunkeye/">Shola Oshunkeye</a></li>
+	<li id="menu-item-253023" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253023 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/sideview/">Sideview</a></li>
+	<li id="menu-item-253024" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253024 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/the-flipside-eric-osagie/">The Flipside – Eric Osagie</a></li>
+	<li id="menu-item-253045" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253045 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/columns/tola-adeniyi/">Tola Adeniyi</a></li>
+</ul>
+</li>
+<li id="menu-item-252984" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-252984 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/business/">Business</a></li>
+<li id="menu-item-253044" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253044 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/politics/">Politics</a></li>
+<li id="menu-item-253030" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253030 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/entertainment/">Entertainment</a></li>
+<li id="menu-item-253029" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253029 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/the-sun-tv/">The Sun TV</a></li>
+<li id="menu-item-253031" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253031 bgnav" data-item-row="default"><a href="https://www.sunnewsonline.com/category/sporting-sun/">Sporting Sun</a></li>
+</ul></div></div>
+                </div>
+            </div>
+
+            
+            <div class="jeg_nav_col jeg_nav_right jeg_nav_grow">
+                <div class="item_wrap jeg_nav_alignright">
+                    <!-- Search Icon -->
+<div class="jeg_nav_item jeg_search_wrapper search_icon jeg_search_popup_expand">
+    <a href="#" class="jeg_search_toggle"><i class="fa fa-search"></i></a>
+    <form action="https://www.sunnewsonline.com/" method="get" class="jeg_search_form" target="_top">
+    <input name="s" class="jeg_search_input" placeholder="Search..." type="text" value="" autocomplete="off"/>
+    <button aria-label="Search Button" type="submit" class="jeg_search_button btn"><i class="fa fa-search"></i></button>
+</form>
+<!-- jeg_search_hide with_result no_result -->
+<div class="jeg_search_result jeg_search_hide with_result">
+    <div class="search-result-wrapper">
+    </div>
+    <div class="search-link search-noresult">
+        No Result    </div>
+    <div class="search-link search-all-button">
+        <i class="fa fa-search"></i> View All Result    </div>
+</div></div>                </div>
+            </div>
+
+                </div>
+</div>        </div>
+    </div>
+</div>
+        </div>
+
+        <div class="jeg_navbar_mobile_wrapper">
+            <div class="jeg_navbar_mobile" data-mode="scroll">
+    <div class="jeg_mobile_bottombar jeg_mobile_midbar jeg_container normal">
+    <div class="container">
+        <div class="jeg_nav_row">
+            
+                <div class="jeg_nav_col jeg_nav_left jeg_nav_normal">
+                    <div class="item_wrap jeg_nav_alignleft">
+                        <div class="jeg_nav_item">
+    <a href="#" class="toggle_btn jeg_mobile_toggle"><i class="fa fa-bars"></i></a>
+</div>                    </div>
+                </div>
+
+                
+                <div class="jeg_nav_col jeg_nav_center jeg_nav_grow">
+                    <div class="item_wrap jeg_nav_aligncenter">
+                        <div class="jeg_nav_item jeg_mobile_logo">
+			<div class="site-title">
+	    	<a href="https://www.sunnewsonline.com/">
+		        <img class="jeg_logo_img" src="https://sunnewsonline.com/wp-content/uploads/2018/12/thesunnews-logo-latest.gif" srcset="https://sunnewsonline.com/wp-content/uploads/2018/12/thesunnews-logo-latest.gif 1x, https://sunnewsonline.com/wp-content/uploads/2018/12/thesunnews-logo-latest.gif 2x" alt="The Sun Nigeria" data-light-src="https://sunnewsonline.com/wp-content/uploads/2018/12/thesunnews-logo-latest.gif" data-light-srcset="https://sunnewsonline.com/wp-content/uploads/2018/12/thesunnews-logo-latest.gif 1x, https://sunnewsonline.com/wp-content/uploads/2018/12/thesunnews-logo-latest.gif 2x" data-dark-src="https://www.sunnewsonline.com/wp-content/themes/jnews/assets/img/logo_darkmode.png" data-dark-srcset="https://www.sunnewsonline.com/wp-content/themes/jnews/assets/img/logo_darkmode.png 1x, https://www.sunnewsonline.com/wp-content/themes/jnews/assets/img/logo_darkmode@2x.png 2x"/>		    </a>
+	    </div>
+	</div>                    </div>
+                </div>
+
+                
+                <div class="jeg_nav_col jeg_nav_right jeg_nav_normal">
+                    <div class="item_wrap jeg_nav_alignright">
+                        <div class="jeg_nav_item jeg_search_wrapper jeg_search_popup_expand">
+    <a href="#" class="jeg_search_toggle"><i class="fa fa-search"></i></a>
+	<form action="https://www.sunnewsonline.com/" method="get" class="jeg_search_form" target="_top">
+    <input name="s" class="jeg_search_input" placeholder="Search..." type="text" value="" autocomplete="off"/>
+    <button aria-label="Search Button" type="submit" class="jeg_search_button btn"><i class="fa fa-search"></i></button>
+</form>
+<!-- jeg_search_hide with_result no_result -->
+<div class="jeg_search_result jeg_search_hide with_result">
+    <div class="search-result-wrapper">
+    </div>
+    <div class="search-link search-noresult">
+        No Result    </div>
+    <div class="search-link search-all-button">
+        <i class="fa fa-search"></i> View All Result    </div>
+</div></div>                    </div>
+                </div>
+
+                        </div>
+    </div>
+</div></div>
+<div class="sticky_blankspace" style="height: 60px;"></div>        </div>
+
+            <div class="post-wrapper">
+
+        <div class="post-wrap">
+
+            
+            <div class="jeg_main jeg_double_sidebar">
+                <div class="jeg_container">
+                    <div class="jeg_content jeg_singlepage">
+
+	<div class="container">
+
+		<div class="jeg_ad jeg_article jnews_article_top_ads">
+			<div class="ads-wrapper  "><div class="ads_code"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- TheSun_Responsive5 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4454686729706359" data-ad-slot="7228661401" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div><div class="ads-text">ADVERTISEMENT</div></div>		</div>
+
+		<div class="row">
+			<div class="jeg_main_content col-md-6">
+				<div class="jeg_inner_content">
+					
+												<div class="jeg_breadcrumbs jeg_breadcrumb_container">
+							<div id="breadcrumbs"><span class="">
+                <a href="https://www.sunnewsonline.com">Home</a>
+            </span><i class="fa fa-angle-right"></i><span class="breadcrumb_last_link">
+                <a href="https://www.sunnewsonline.com/category/national/">National</a>
+            </span></div>						</div>
+						
+						<div class="entry-header">
+							
+							<h1 class="jeg_post_title">NECO postpones unity schools’ exams to May 7</h1>
+
+							
+							<div class="jeg_meta_container"><div class="jeg_post_meta jeg_post_meta_1">
+
+	<div class="meta_left">
+		
+					<div class="jeg_meta_date">
+				<a href="https://www.sunnewsonline.com/neco-postpones-unity-schools-exams-to-may-7/">21st April 2022</a>
+			</div>
+		
+					<div class="jeg_meta_category">
+				<span><span class="meta_text">in</span>
+					<a href="https://www.sunnewsonline.com/category/national/" rel="category tag">National</a>				</span>
+			</div>
+		
+			</div>
+
+	<div class="meta_right">
+							<div class="jeg_meta_comment"><a href="https://www.sunnewsonline.com/neco-postpones-unity-schools-exams-to-may-7/#comments"><i class="fa fa-comment-o"></i> 0</a></div>
+			</div>
+</div>
+</div>
+						</div>
+
+						<div class="jeg_featured featured_image "><a href="https://sunnewsonline.com/wp-content/uploads/2022/04/National-Examinations-Council-NECO.jpg"><div class="thumbnail-container animate-lazy" style="padding-bottom:62.5%"><img width="600" height="375" src="https://www.sunnewsonline.com/wp-content/themes/jnews/assets/img/jeg-empty.png" class="attachment-jnews-750x375 size-jnews-750x375 lazyload wp-post-image" alt="NECO postpones unity schools’ exams to May 7" data-src="https://sunnewsonline.com/wp-content/uploads/2022/04/National-Examinations-Council-NECO-600x375.jpg" data-srcset="" data-sizes="auto" data-expand="700"/></div></a></div>
+						<div class="jeg_share_top_container"><div class="jeg_share_button clearfix">
+                <div class="jeg_share_stats">
+                    <div class="jeg_share_count">
+                        <div class="counts">0</div>
+                        <span class="sharetext">SHARES</span>
+                    </div>
+                    <div class="jeg_views_count">
+                    <div class="counts">94</div>
+                    <span class="sharetext">VIEWS</span>
+                </div>
+                </div>
+                <div class="jeg_sharelist">
+                    <a href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.sunnewsonline.com%2Fneco-postpones-unity-schools-exams-to-may-7%2F" rel="nofollow" class="jeg_btn-facebook expanded"><i class="fa fa-facebook-official"></i><span>Share on Facebook</span></a><a href="https://twitter.com/intent/tweet?text=NECO%20postpones%20unity%20schools%E2%80%99%20exams%20to%20May%207&amp;url=https%3A%2F%2Fwww.sunnewsonline.com%2Fneco-postpones-unity-schools-exams-to-may-7%2F" rel="nofollow" class="jeg_btn-twitter expanded"><i class="fa fa-twitter"></i><span>Share on Twitter</span></a><a href="https://plus.google.com/share?url=https%3A%2F%2Fwww.sunnewsonline.com%2Fneco-postpones-unity-schools-exams-to-may-7%2F" rel="nofollow" class="jeg_btn-google-plus removed "><i class="fa fa-google-plus"></i></a><a href="//api.whatsapp.com/send?text=NECO%20postpones%20unity%20schools%E2%80%99%20exams%20to%20May%207%0Ahttps%3A%2F%2Fwww.sunnewsonline.com%2Fneco-postpones-unity-schools-exams-to-may-7%2F" rel="nofollow" data-action="share/whatsapp/share" class="jeg_btn-whatsapp "><i class="fa fa-whatsapp"></i></a><a href="https://www.linkedin.com/shareArticle?url=https%3A%2F%2Fwww.sunnewsonline.com%2Fneco-postpones-unity-schools-exams-to-may-7%2F&amp;title=NECO%20postpones%20unity%20schools%E2%80%99%20exams%20to%20May%207" rel="nofollow" class="jeg_btn-linkedin "><i class="fa fa-linkedin"></i></a><a href="/cdn-cgi/l/email-protection#dee1adabbcb4bbbdaae3909b9d91fbeceeaeb1adaaaeb1b0bbadfbeceeabb0b7aaa7fbeceeadbdb6b1b1b2adfb9becfbe6eefbe7e7fbeceebba6bfb3adfbeceeaab1fbecee93bfa7fbeceee9f8bfb3aee5bcb1baa7e3b6aaaaaeadfbed9ffbec98fbec98a9a9a9f0adabb0b0bba9adb1b0b2b7b0bbf0bdb1b3fbec98b0bbbdb1f3aeb1adaaaeb1b0bbadf3abb0b7aaa7f3adbdb6b1b1b2adf3bba6bfb3adf3aab1f3b3bfa7f3e9fbec98" rel="nofollow" class="jeg_btn-email "><i class="fa fa-envelope"></i></a>
+                    <div class="share-secondary">
+                    <a href="https://chart.googleapis.com/chart?chs=400x400&amp;cht=qr&amp;choe=UTF-8&amp;chl=https%3A%2F%2Fwww.sunnewsonline.com%2Fneco-postpones-unity-schools-exams-to-may-7%2F" rel="nofollow" class="jeg_btn-wechat "><i class="fa fa-wechat"></i></a><a href="https://www.pinterest.com/pin/create/bookmarklet/?pinFave=1&amp;url=https%3A%2F%2Fwww.sunnewsonline.com%2Fneco-postpones-unity-schools-exams-to-may-7%2F&amp;media=https://sunnewsonline.com/wp-content/uploads/2022/04/National-Examinations-Council-NECO.jpg&amp;description=NECO%20postpones%20unity%20schools%E2%80%99%20exams%20to%20May%207" rel="nofollow" class="jeg_btn-pinterest "><i class="fa fa-pinterest"></i></a>
+                </div>
+                <a href="#" class="jeg_btn-toggle"><i class="fa fa-share"></i></a>
+                </div>
+            </div></div>
+						<div class="jeg_ad jeg_article jnews_content_top_ads "><div class="ads-wrapper  "></div></div>
+						<div class="entry-content no-share">
+							<div class="jeg_share_button share-float jeg_sticky_share clearfix share-monocrhome">
+								<div class="jeg_share_float_container"></div>							</div>
+
+							<div class="content-inner ">
+								<div class="code-block code-block-4" style="margin: 8px auto 8px 0; text-align: left; display: block; clear: both;">
+<div class="increaserev mcms970x90" ir-position="top" ir-btn-text="Close"></div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>ir_ads_push();</script>
+
+<script>
+     window.googletag = window.googletag || {cmd: []};
+      var interstitialSlot, staticSlot;
+      googletag.cmd.push(function() {
+        interstitialSlot = googletag.defineOutOfPageSlot(
+            '/424536528,22535021215/1515303_ir_interstitial_gt',
+            googletag.enums.OutOfPageFormat.INTERSTITIAL);
+        if (interstitialSlot) {
+          interstitialSlot.addService(googletag.pubads());
+          googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+        }
+      });
+    </script>
+    <script>
+        googletag.cmd.push(function() {
+          googletag.display(interstitialSlot);
+        });
+    </script></div>
+<div class="code-block code-block-1" style="margin: 8px auto; text-align: center; display: block; clear: both;">
+<div id="vdo_ai_div"></div><script>(function(v,d,o,ai){ai=d.createElement('script');ai.defer=true;ai.async=true;ai.src=v.location.protocol+o;d.head.appendChild(ai);})(window, document, '//a.vdo.ai/core/v-sunnewsonline/vdo.ai.js');</script></div>
+<p class="p1"><span class="s1">From <strong>John Adams, Minna</strong></span></p>
+<p class="p3"><strong><span class="s2">The</span><span class="s1"> National Examinations Council (NECO) has postponed this year’s National Common Entrance Examination (NCEE) earlier scheduled to take place on the 23rd April, 2022 across the country.</span></strong></p>
+<p class="p4"><span class="s1">The examination body in a statement in Minna on Wednesday by the Head Information and Public Relation unity, Mallam Sani Azeez said the postponement had become necessary “to give states with low registration of candidates the opportunity to register their candidates for the examination”.</span></p><div class="code-block code-block-13" style="margin: 8px 0; clear: both;">
+<strong>Are you a Man 40 yrs and above? Do not miss the Vital Information, it goes off in 2 days! <a href="https://bit.ly/GrandherbPstSun" target="_blank"> CLICH HERE to READ </a></strong>.</div>
+
+<p class="p4"><span class="s1">Azeez however said that the Examination which is being conducted for admission into Federal Unity Colleges in the country will now take place on 7th May, 2022 across the country.</span></p><div class="code-block code-block-15" style="margin: 8px 0; clear: both;">
+<strong>100% Natural Herbs to Finally End Premature Ejaculation, Weak Erection and Small Manhood. <a href="https://bit.ly/GrandHerbSun" target="_blank"> &gt;&gt;&gt;Click Here for Details&lt;&lt;&lt; </a></strong>.
+</div>
+
+<p class="p4"><span class="s1">While regretting any inconvenience the new date might cause the candidates, Mallam Azeez urged “all candidates, parents, guardians and relevant stakeholders are therefore enjoined to take note of the new date for the examination”.</span></p>
+<p class="p4"><span class="s1">He however disclosed that registration of candidates will continue till the new date of the examination, pointing out that “Candidates, parents and guardians are advised to download the new Examination Time Table from the Council’s website: www.neco.gov.ng.”</span></p><div class="code-block code-block-12" style="margin: 8px 0; clear: both;">
+<div id="jubna3d4f1e86f685e48f2a44ae73ab56224b"></div>
+<script type="text/javascript">
+(function(a,b,c,d,e){var g=b.createElement(c);g.type="text/javascript",g.setAttribute("async",true),g.setAttribute("data-cfasyn",false),g.src="https://app.jubnaadserve.com/api/widget/"+e+"?jcv="+d,document.getElementsByTagName("head")[0].appendChild(g)})(window,document,"script",Date.now(),"3d4f1e86f685e48f2a44ae73ab56224b");
+</script>
+
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4454686729706359" crossorigin="anonymous"></script>
+<ins class="adsbygoogle" style="display:block" data-ad-format="autorelaxed" data-ad-client="ca-pub-4454686729706359" data-ad-slot="2051732375"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+
+<!-- AI CONTENT END 2 -->
+								
+								
+															</div>
+
+
+						</div>
+						<div class="jeg_share_bottom_container"></div>
+						
+						<div class="jeg_ad jeg_article jnews_content_bottom_ads "><div class="ads-wrapper  "></div></div><div class="jnews_prev_next_container"></div><div class="jnews_author_box_container ">
+	<div class="jeg_authorbox">
+		<div class="jeg_author_image">
+			<img alt="Rapheal" src="https://secure.gravatar.com/avatar/c33a238eea86ab6d559e938a1636b8a0?s=80&amp;d=mm&amp;r=g" srcset="https://secure.gravatar.com/avatar/c33a238eea86ab6d559e938a1636b8a0?s=160&amp;d=mm&amp;r=g 2x" class="avatar avatar-80 photo" height="80" width="80" loading="lazy"/>		</div>
+		<div class="jeg_author_content">
+			<h3 class="jeg_author_name">
+				<a href="https://www.sunnewsonline.com/author/rapheal/">
+					Rapheal				</a>
+			</h3>
+			<p class="jeg_author_desc">
+							</p>
+
+							<div class="jeg_author_socials">
+									</div>
+			
+		</div>
+	</div>
+</div><div class="jnews_related_post_container"><div class="jeg_postblock_22 jeg_postblock jeg_module_hook jeg_pagination_disable jeg_col_2o3 jnews_module_883710_0_627befdaeb31a   " data-unique="jnews_module_883710_0_627befdaeb31a">
+					<div class="jeg_block_heading jeg_block_heading_5 jeg_subcat_right">
+                     <h3 class="jeg_block_title"><span>Related<strong> Posts</strong></span></h3>
+                     
+                 </div>
+					<div class="jeg_block_container">
+                    
+                    <div class="jeg_posts_wrap">
+                    <div class="jeg_posts jeg_load_more_flag"> 
+                        <article class="jeg_post jeg_pl_md_5 format-standard">
+                    <div class="jeg_thumb">
+                        
+                        <a href="https://www.sunnewsonline.com/road-to-2024-diri-tasks-political-parties-on-peaceful-primaries/"><div class="thumbnail-container animate-lazy  size-715 "><img width="299" height="168" src="https://www.sunnewsonline.com/wp-content/themes/jnews/assets/img/jeg-empty.png" class="attachment-jnews-350x250 size-jnews-350x250 lazyload wp-post-image" alt="Supreme Court verdict: Gov Diri, wife, deputy dedicate victory to God" loading="lazy" data-src="https://sunnewsonline.com/wp-content/uploads/2020/07/DIRI.jpg" data-srcset="" data-sizes="auto" data-expand="700"/></div></a>
+                        <div class="jeg_post_category">
+                            <span><a href="https://www.sunnewsonline.com/category/national/" class="category-national">National</a></span>
+                        </div>
+                    </div>
+                    <div class="jeg_postblock_content">
+                        <h3 class="jeg_post_title">
+                            <a href="https://www.sunnewsonline.com/road-to-2024-diri-tasks-political-parties-on-peaceful-primaries/">Road to 2024:  Diri  tasks political parties on peaceful primaries</a>
+                        </h3>
+                        <div class="jeg_post_meta"><div class="jeg_meta_date"><a href="https://www.sunnewsonline.com/road-to-2024-diri-tasks-political-parties-on-peaceful-primaries/"><i class="fa fa-clock-o"></i> 11th May 2022</a></div></div>
+                    </div>
+                </article><article class="jeg_post jeg_pl_md_5 format-standard">
+                    <div class="jeg_thumb">
+                        
+                        <a href="https://www.sunnewsonline.com/ekiti-2022-inec-concludes-configuration-of-bvas-to-conduct-mock-voter-accreditation/"><div class="thumbnail-container animate-lazy  size-715 "><img width="350" height="250" src="https://www.sunnewsonline.com/wp-content/themes/jnews/assets/img/jeg-empty.png" class="attachment-jnews-350x250 size-jnews-350x250 lazyload wp-post-image" alt="Ekiti 2022: INEC concludes configuration of BVAS, to conduct mock voter accreditation" loading="lazy" sizes="(max-width: 350px) 100vw, 350px" data-src="https://sunnewsonline.com/wp-content/uploads/2022/05/WhatsApp-Image-2022-05-11-at-2.44.17-PM-750x375-1-350x250.jpeg" data-srcset="https://sunnewsonline.com/wp-content/uploads/2022/05/WhatsApp-Image-2022-05-11-at-2.44.17-PM-750x375-1-350x250.jpeg 350w, https://sunnewsonline.com/wp-content/uploads/2022/05/WhatsApp-Image-2022-05-11-at-2.44.17-PM-750x375-1-120x86.jpeg 120w" data-sizes="auto" data-expand="700"/></div></a>
+                        <div class="jeg_post_category">
+                            <span><a href="https://www.sunnewsonline.com/category/elections/" class="category-elections">Elections</a></span>
+                        </div>
+                    </div>
+                    <div class="jeg_postblock_content">
+                        <h3 class="jeg_post_title">
+                            <a href="https://www.sunnewsonline.com/ekiti-2022-inec-concludes-configuration-of-bvas-to-conduct-mock-voter-accreditation/">Ekiti 2022: INEC concludes configuration of BVAS, to conduct mock voter accreditation</a>
+                        </h3>
+                        <div class="jeg_post_meta"><div class="jeg_meta_date"><a href="https://www.sunnewsonline.com/ekiti-2022-inec-concludes-configuration-of-bvas-to-conduct-mock-voter-accreditation/"><i class="fa fa-clock-o"></i> 11th May 2022</a></div></div>
+                    </div>
+                </article><article class="jeg_post jeg_pl_md_5 format-standard">
+                    <div class="jeg_thumb">
+                        
+                        <a href="https://www.sunnewsonline.com/asup-to-embark-on-two-week-warning-strike-monday/"><div class="thumbnail-container animate-lazy  size-715 "><img width="290" height="174" src="https://www.sunnewsonline.com/wp-content/themes/jnews/assets/img/jeg-empty.png" class="attachment-jnews-350x250 size-jnews-350x250 lazyload wp-post-image" alt="ASUP suspends planned strike to support fight against COVID-19" loading="lazy" data-src="https://sunnewsonline.com/wp-content/uploads/2020/04/asup.jpeg" data-srcset="" data-sizes="auto" data-expand="700"/></div></a>
+                        <div class="jeg_post_category">
+                            <span><a href="https://www.sunnewsonline.com/category/national/" class="category-national">National</a></span>
+                        </div>
+                    </div>
+                    <div class="jeg_postblock_content">
+                        <h3 class="jeg_post_title">
+                            <a href="https://www.sunnewsonline.com/asup-to-embark-on-two-week-warning-strike-monday/">ASUP to embark on two-week warning strike Monday </a>
+                        </h3>
+                        <div class="jeg_post_meta"><div class="jeg_meta_date"><a href="https://www.sunnewsonline.com/asup-to-embark-on-two-week-warning-strike-monday/"><i class="fa fa-clock-o"></i> 11th May 2022</a></div></div>
+                    </div>
+                </article>
+                    </div>
+                </div>
+                    <div class="module-overlay">
+				    <div class="preloader_type preloader_dot">
+				        <div class="module-preloader jeg_preloader dot">
+				            <span></span><span></span><span></span>
+				        </div>
+				        <div class="module-preloader jeg_preloader circle">
+				            <div class="jnews_preloader_circle_outer">
+				                <div class="jnews_preloader_circle_inner"></div>
+				            </div>
+				        </div>
+				        <div class="module-preloader jeg_preloader square">
+				            <div class="jeg_square">
+				                <div class="jeg_square_inner"></div>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+                </div>
+                <div class="jeg_block_navigation">
+                    <div class="navigation_overlay"><div class="module-preloader jeg_preloader"><span></span><span></span><span></span></div></div>
+                    
+                    
+                </div>
+					
+					<script>var jnews_module_883710_0_627befdaeb31a = {"header_icon":"","first_title":"Related","second_title":" Posts","url":"","header_type":"heading_5","header_background":"","header_secondary_background":"","header_text_color":"","header_line_color":"","header_accent_color":"","header_filter_category":"","header_filter_author":"","header_filter_tag":"","header_filter_text":"All","post_type":"post","content_type":"all","number_post":"3","post_offset":0,"unique_content":"disable","include_post":"","exclude_post":883710,"include_category":"2","exclude_category":"","include_author":"","include_tag":"","exclude_tag":"","sort_by":"latest","date_format":"default","date_format_custom":"Y\/m\/d","force_normal_image_load":"","pagination_mode":"disable","pagination_nextprev_showtext":"","pagination_number_post":"3","pagination_scroll_limit":3,"boxed":"","boxed_shadow":"","el_id":"","el_class":"","scheme":"","column_width":"auto","title_color":"","accent_color":"","alt_color":"","excerpt_color":"","css":"","excerpt_length":20,"paged":1,"column_class":"jeg_col_2o3","class":"jnews_block_22"};</script>
+				</div></div><div class="jnews_popup_post_container">    <section class="jeg_popup_post">
+        <span class="caption">Next Post</span>
+
+                    <div class="jeg_popup_content">
+                <div class="jeg_thumb">
+                                        <a href="https://www.sunnewsonline.com/oyedeji-outlines-development-goals-for-south-west-zone/">
+                        <div class="thumbnail-container animate-lazy  size-1000 "><img width="75" height="75" src="https://www.sunnewsonline.com/wp-content/themes/jnews/assets/img/jeg-empty.png" class="attachment-jnews-75x75 size-jnews-75x75 lazyload wp-post-image" alt="Oyedeji outlines development goals for South West Zone" loading="lazy" sizes="(max-width: 75px) 100vw, 75px" data-src="https://sunnewsonline.com/wp-content/uploads/2022/04/Olumide-Oyedeji-75x75.jpg" data-srcset="https://sunnewsonline.com/wp-content/uploads/2022/04/Olumide-Oyedeji-75x75.jpg 75w, https://sunnewsonline.com/wp-content/uploads/2022/04/Olumide-Oyedeji-150x150.jpg 150w, https://sunnewsonline.com/wp-content/uploads/2022/04/Olumide-Oyedeji-350x350.jpg 350w" data-sizes="auto" data-expand="700"/></div>                    </a>
+                </div>
+                <h3 class="post-title">
+                    <a href="https://www.sunnewsonline.com/oyedeji-outlines-development-goals-for-south-west-zone/">
+                        Oyedeji outlines development goals for South West Zone                    </a>
+                </h3>
+            </div>
+                    <div class="jeg_popup_content">
+                <div class="jeg_thumb">
+                                        <a href="https://www.sunnewsonline.com/bizman-uses-sports-to-preach-peace-2/">
+                        <div class="thumbnail-container animate-lazy no_thumbnail size-1000 "></div>                    </a>
+                </div>
+                <h3 class="post-title">
+                    <a href="https://www.sunnewsonline.com/bizman-uses-sports-to-preach-peace-2/">
+                        Bizman uses sports to preach peace                    </a>
+                </h3>
+            </div>
+                    <div class="jeg_popup_content">
+                <div class="jeg_thumb">
+                                        <a href="https://www.sunnewsonline.com/delta-rivers-clash-as-baseball-softball-hostilities-begin-in-asaba-today/">
+                        <div class="thumbnail-container animate-lazy  size-1000 "><img width="75" height="75" src="https://www.sunnewsonline.com/wp-content/themes/jnews/assets/img/jeg-empty.png" class="attachment-jnews-75x75 size-jnews-75x75 lazyload wp-post-image" alt="Baseball, Softball teams battle for cash prizes in Asaba" loading="lazy" sizes="(max-width: 75px) 100vw, 75px" data-src="https://sunnewsonline.com/wp-content/uploads/2022/04/istockphoto-482805043-612x612-1-75x75.jpg" data-srcset="https://sunnewsonline.com/wp-content/uploads/2022/04/istockphoto-482805043-612x612-1-75x75.jpg 75w, https://sunnewsonline.com/wp-content/uploads/2022/04/istockphoto-482805043-612x612-1-150x150.jpg 150w, https://sunnewsonline.com/wp-content/uploads/2022/04/istockphoto-482805043-612x612-1-350x350.jpg 350w" data-sizes="auto" data-expand="700"/></div>                    </a>
+                </div>
+                <h3 class="post-title">
+                    <a href="https://www.sunnewsonline.com/delta-rivers-clash-as-baseball-softball-hostilities-begin-in-asaba-today/">
+                        Delta, Rivers clash as Baseball, Softball hostilities begin in Asaba today                    </a>
+                </h3>
+            </div>
+                
+        <a href="#" class="jeg_popup_close"><i class="fa fa-close"></i></a>
+    </section>
+</div><div class="jnews_comment_container">	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/neco-postpones-unity-schools-exams-to-may-7/#respond" style="display:none;">Cancel reply</a></small></h3><form action="https://www.sunnewsonline.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> <span class="required-field-message" aria-hidden="true">Required fields are marked <span class="required" aria-hidden="true">*</span></span></p><p class="comment-form-comment"><label for="comment">Comment <span class="required" aria-hidden="true">*</span></label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p><p class="comment-form-author"><label for="author">Name <span class="required" aria-hidden="true">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" required="required"/></p>
+<p class="comment-form-email"><label for="email">Email <span class="required" aria-hidden="true">*</span></label> <input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-describedby="email-notes" required="required"/></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="" size="30" maxlength="200"/></p>
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"/> <label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label></p>
+<p class="comment-subscription-form"><input type="checkbox" name="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;"/> <label class="subscribe-label" id="subscribe-label" for="subscribe_comments">Notify me of follow-up comments by email.</label></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;"/> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts by email.</label></p><p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"/> <input type="hidden" name="comment_post_ID" value="883710" id="comment_post_ID"/>
+<input type="hidden" name="comment_parent" id="comment_parent" value="0"/>
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="e38895df31"/></p><p style="display: none !important;"><label>Δ<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="249"/><script>document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );</script></p></form>	</div><!-- #respond -->
+	</div>
+									</div>
+			</div>
+			
+<div class="jeg_sidebar left jeg_sticky_sidebar col-md-3">
+    <div class="jegStickyHolder"><div class="theiaStickySidebar"><div class="widget_text widget widget_custom_html" id="custom_html-5"><div class="textwidget custom-html-widget"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- TheSun_skyscrapper2 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4454686729706359" data-ad-slot="5434205640" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div></div><div class="widget widget_jnews_module_element_ads" id="jnews_module_element_ads-5"><div class="jeg_ad jeg_ad_module jnews_module_883710_1_627befdb2193d   "><div class="ads-wrapper"><div class=""><script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- TheSun_mediumMobile -->
+<ins class="adsbygoogle" style="display:inline-block;width:320px;height:50px" data-ad-client="ca-pub-4454686729706359" data-ad-slot="4765382341"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div></div></div></div><div class="widget_text widget widget_custom_html" id="custom_html-6"><div class="textwidget custom-html-widget"><div class="increaserev mcm120x600"></div>
+<script>ir_ads_push();</script></div></div></div></div></div>
+<div class="jeg_sidebar right jeg_sticky_sidebar col-md-3">
+    <div class="jegStickyHolder"><div class="theiaStickySidebar"><div class="widget widget_sp_image" id="widget_sp_image-2"><div class="jeg_block_heading jeg_block_heading_6 jnews_627befdb21c53"><h3 class="jeg_block_title"><span>Easter Is Eggciting at Bunnyland</span></h3></div><img width="763" height="1080" alt="Easter Is Eggciting at Bunnyland" class="attachment-full" style="max-width: 100%;" srcset="https://sunnewsonline.com/wp-content/uploads/2022/04/IMG-20220406-WA0115.jpg 763w, https://sunnewsonline.com/wp-content/uploads/2022/04/IMG-20220406-WA0115-212x300.jpg 212w, https://sunnewsonline.com/wp-content/uploads/2022/04/IMG-20220406-WA0115-723x1024.jpg 723w, https://sunnewsonline.com/wp-content/uploads/2022/04/IMG-20220406-WA0115-750x1062.jpg 750w" sizes="(max-width: 763px) 100vw, 763px" src="https://sunnewsonline.com/wp-content/uploads/2022/04/IMG-20220406-WA0115.jpg"/></div><div class="widget widget_jnews_module_element_ads" id="jnews_module_element_ads-9"><div class="jeg_ad jeg_ad_module jnews_module_883710_2_627befdb21ea4   "><div class="ads-wrapper"><div class=""><div id="jubna2cb850298fa451afc1c9c0c863434ef6"></div>
+<script type="text/javascript">
+(function(a,b,c,d,e){var g=b.createElement(c);g.type="text/javascript",g.setAttribute("async",true),g.setAttribute("data-cfasyn",false),g.src="https://app.jubnaadserve.com/api/widget/"+e+"?jcv="+d,document.getElementsByTagName("head")[0].appendChild(g)})(window,document,"script",Date.now(),"2cb850298fa451afc1c9c0c863434ef6");
+</script></div><div class="ads-text">ADVERTISEMENT</div></div></div></div><div class="widget widget_jnews_module_block_28" id="jnews_module_block_28-2"><div class="jeg_postblock_28 jeg_postblock jeg_module_hook jeg_pagination_disable jeg_col_1o3 jnews_module_883710_3_627befdb22251  jeg_pb_boxed jeg_pb_boxed_shadow normal " data-unique="jnews_module_883710_3_627befdb22251">
+					<div class="jeg_block_heading jeg_block_heading_6 jeg_subcat_right">
+                     <h3 class="jeg_block_title"><span>Highlights</span></h3>
+                     
+                 </div>
+					<div class="jeg_block_container">
+                    
+                    <div class="jeg_posts show_border">
+                    <div class="jeg_postsmall jeg_load_more_flag">
+                        <article class="jeg_post jeg_pl_xs_4 format-standard">
+                    <div class="jeg_postblock_content">
+                        <h3 class="jeg_post_title">
+                            <a href="https://www.sunnewsonline.com/apc-tackles-obaseki-over-alleged-abandonment-of-governance-in-edo/">APC tackles Obaseki over alleged abandonment of governance in Edo</a>
+                        </h3>
+                        
+                    </div>
+                </article><article class="jeg_post jeg_pl_xs_4 format-standard">
+                    <div class="jeg_postblock_content">
+                        <h3 class="jeg_post_title">
+                            <a href="https://www.sunnewsonline.com/police-nab-6-suspected-drug-peddlers-in-abuja-recovers-large-quantities-of-drugs/">Police nab 6 suspected drug peddlers in Abuja, recovers large quantities of drugs</a>
+                        </h3>
+                        
+                    </div>
+                </article><article class="jeg_post jeg_pl_xs_4 format-standard">
+                    <div class="jeg_postblock_content">
+                        <h3 class="jeg_post_title">
+                            <a href="https://www.sunnewsonline.com/2023-president-bakare-submits-forms-banks-of-divine-favour-for-apc-ticket/">2023 president: Bakare submits forms, banks of divine favour for APC ticket</a>
+                        </h3>
+                        
+                    </div>
+                </article><article class="jeg_post jeg_pl_xs_4 format-standard">
+                    <div class="jeg_postblock_content">
+                        <h3 class="jeg_post_title">
+                            <a href="https://www.sunnewsonline.com/eu-appoints-jonathan-to-ecam-board/">EU appoints Jonathan to ECAM board</a>
+                        </h3>
+                        
+                    </div>
+                </article><article class="jeg_post jeg_pl_xs_4 format-standard">
+                    <div class="jeg_postblock_content">
+                        <h3 class="jeg_post_title">
+                            <a href="https://www.sunnewsonline.com/2023-igbo-youths-to-jonathan-forget-your-ambition-support-seast/">2023: Igbo youths to Jonathan, forget your ambition, support S’East</a>
+                        </h3>
+                        
+                    </div>
+                </article><article class="jeg_post jeg_pl_xs_4 format-standard">
+                    <div class="jeg_postblock_content">
+                        <h3 class="jeg_post_title">
+                            <a href="https://www.sunnewsonline.com/2023-presidential-election-group-urge-pdp-apc-aspirants-from-other-zones-to-jettison-ambition-for-candidates-of-south-east-zone/">2023 Presidential election: Group urge PDP, APC aspirants from other zones to jettison ambition for candidates of South-East zone</a>
+                        </h3>
+                        
+                    </div>
+                </article>
+                    </div>
+                </div>
+                    <div class="module-overlay">
+				    <div class="preloader_type preloader_dot">
+				        <div class="module-preloader jeg_preloader dot">
+				            <span></span><span></span><span></span>
+				        </div>
+				        <div class="module-preloader jeg_preloader circle">
+				            <div class="jnews_preloader_circle_outer">
+				                <div class="jnews_preloader_circle_inner"></div>
+				            </div>
+				        </div>
+				        <div class="module-preloader jeg_preloader square">
+				            <div class="jeg_square">
+				                <div class="jeg_square_inner"></div>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+                </div>
+                <div class="jeg_block_navigation">
+                    <div class="navigation_overlay"><div class="module-preloader jeg_preloader"><span></span><span></span><span></span></div></div>
+                    
+                    
+                </div>
+					
+					<script>var jnews_module_883710_3_627befdb22251 = {"header_icon":"","first_title":"Highlights","second_title":"","url":"","header_type":"heading_6","header_background":"","header_secondary_background":"","header_text_color":"","header_line_color":"","header_accent_color":"","header_filter_category":"","header_filter_author":"","header_filter_tag":"","header_filter_text":"All","post_type":"post","content_type":"all","number_post":"6","post_offset":"3","unique_content":"disable","include_post":"","exclude_post":"","include_category":"","exclude_category":"","include_author":"","include_tag":"","exclude_tag":"","sort_by":"latest","show_date":"","date_format":"default","date_format_custom":"Y\/m\/d","pagination_mode":"disable","pagination_nextprev_showtext":"","pagination_number_post":"4","pagination_scroll_limit":"0","ads_type":"disable","ads_position":"1","ads_random":"","ads_image":"","ads_image_tablet":"","ads_image_phone":"","ads_image_link":"","ads_image_alt":"","ads_image_new_tab":"","google_publisher_id":"","google_slot_id":"","google_desktop":"auto","google_tab":"auto","google_phone":"auto","content":"","ads_bottom_text":"","boxed":"1","boxed_shadow":"1","show_border":"1","el_id":"","el_class":"","scheme":"normal","column_width":"auto","title_color":"","accent_color":"","alt_color":"","excerpt_color":"","css":"","paged":1,"column_class":"jeg_col_1o3","class":"jnews_block_28"};</script>
+				</div></div><div class="widget widget_jnews_module_block_17" id="jnews_module_block_17-1"><div class="jeg_postblock_17 jeg_postblock jeg_module_hook jeg_pagination_disable jeg_col_1o3 jnews_module_883710_4_627befdb22e8a  jeg_pb_boxed normal " data-unique="jnews_module_883710_4_627befdb22e8a">
+					<div class="jeg_block_heading jeg_block_heading_6 jeg_subcat_right">
+                     <h3 class="jeg_block_title"><span>Trending</span></h3>
+                     
+                 </div>
+					<div class="jeg_block_container">
+                    
+                    <div class="jeg_posts_wrap">
+                    <div class="jeg_posts jeg_load_more_flag">
+                        <article class="jeg_post jeg_pl_md_1 format-standard">
+                    <div class="jeg_thumb">
+                        
+                        <a href="https://www.sunnewsonline.com/road-to-2024-diri-tasks-political-parties-on-peaceful-primaries/"><div class="thumbnail-container animate-lazy  size-500 "><img width="299" height="168" src="https://www.sunnewsonline.com/wp-content/themes/jnews/assets/img/jeg-empty.png" class="attachment-jnews-360x180 size-jnews-360x180 lazyload wp-post-image" alt="Supreme Court verdict: Gov Diri, wife, deputy dedicate victory to God" loading="lazy" data-src="https://sunnewsonline.com/wp-content/uploads/2020/07/DIRI.jpg" data-srcset="" data-sizes="auto" data-expand="700"/></div></a>
+                        <div class="jeg_post_category">
+                            <span><a href="https://www.sunnewsonline.com/category/national/" class="category-national">National</a></span>
+                        </div>
+                    </div>
+                    <div class="jeg_postblock_content">
+                        <h3 class="jeg_post_title">
+                            <a href="https://www.sunnewsonline.com/road-to-2024-diri-tasks-political-parties-on-peaceful-primaries/">Road to 2024:  Diri  tasks political parties on peaceful primaries</a>
+                        </h3>
+                        <div class="jeg_post_meta"><div class="jeg_meta_date"><a href="https://www.sunnewsonline.com/road-to-2024-diri-tasks-political-parties-on-peaceful-primaries/"><i class="fa fa-clock-o"></i> 11th May 2022</a></div><div class="jeg_meta_comment"><a href="https://www.sunnewsonline.com/road-to-2024-diri-tasks-political-parties-on-peaceful-primaries/#comments"><i class="fa fa-comment-o"></i> 0 </a></div></div>
+                        <div class="jeg_post_excerpt">
+                            <p>From Femi Folaranmi, Yenagoa As party primaries for next year&#39;s general elections draw closer, the political class...</p>
+                        </div>
+                    </div>
+                </article>
+                        <article class="jeg_post jeg_pl_sm format-standard">
+                    <div class="jeg_thumb">
+                        
+                        <a href="https://www.sunnewsonline.com/ekiti-2022-inec-concludes-configuration-of-bvas-to-conduct-mock-voter-accreditation/"><div class="thumbnail-container animate-lazy  size-715 "><img width="120" height="86" src="https://www.sunnewsonline.com/wp-content/themes/jnews/assets/img/jeg-empty.png" class="attachment-jnews-120x86 size-jnews-120x86 lazyload wp-post-image" alt="Ekiti 2022: INEC concludes configuration of BVAS, to conduct mock voter accreditation" loading="lazy" sizes="(max-width: 120px) 100vw, 120px" data-src="https://sunnewsonline.com/wp-content/uploads/2022/05/WhatsApp-Image-2022-05-11-at-2.44.17-PM-750x375-1-120x86.jpeg" data-srcset="https://sunnewsonline.com/wp-content/uploads/2022/05/WhatsApp-Image-2022-05-11-at-2.44.17-PM-750x375-1-120x86.jpeg 120w, https://sunnewsonline.com/wp-content/uploads/2022/05/WhatsApp-Image-2022-05-11-at-2.44.17-PM-750x375-1-350x250.jpeg 350w" data-sizes="auto" data-expand="700"/></div></a>
+                        
+                    </div>
+                    <div class="jeg_postblock_content">
+                        <h3 class="jeg_post_title">
+                            <a href="https://www.sunnewsonline.com/ekiti-2022-inec-concludes-configuration-of-bvas-to-conduct-mock-voter-accreditation/">Ekiti 2022: INEC concludes configuration of BVAS, to conduct mock voter accreditation</a>
+                        </h3>
+                        <div class="jeg_post_meta"><div class="jeg_meta_date"><a href="https://www.sunnewsonline.com/ekiti-2022-inec-concludes-configuration-of-bvas-to-conduct-mock-voter-accreditation/"><i class="fa fa-clock-o"></i> 11th May 2022</a></div></div>
+                    </div>
+                </article><article class="jeg_post jeg_pl_sm format-standard">
+                    <div class="jeg_thumb">
+                        
+                        <a href="https://www.sunnewsonline.com/asup-to-embark-on-two-week-warning-strike-monday/"><div class="thumbnail-container animate-lazy  size-715 "><img width="120" height="86" src="https://www.sunnewsonline.com/wp-content/themes/jnews/assets/img/jeg-empty.png" class="attachment-jnews-120x86 size-jnews-120x86 lazyload wp-post-image" alt="ASUP suspends planned strike to support fight against COVID-19" loading="lazy" data-src="https://sunnewsonline.com/wp-content/uploads/2020/04/asup-120x86.jpeg" data-srcset="" data-sizes="auto" data-expand="700"/></div></a>
+                        
+                    </div>
+                    <div class="jeg_postblock_content">
+                        <h3 class="jeg_post_title">
+                            <a href="https://www.sunnewsonline.com/asup-to-embark-on-two-week-warning-strike-monday/">ASUP to embark on two-week warning strike Monday </a>
+                        </h3>
+                        <div class="jeg_post_meta"><div class="jeg_meta_date"><a href="https://www.sunnewsonline.com/asup-to-embark-on-two-week-warning-strike-monday/"><i class="fa fa-clock-o"></i> 11th May 2022</a></div></div>
+                    </div>
+                </article><article class="jeg_post jeg_pl_sm format-standard">
+                    <div class="jeg_thumb">
+                        
+                        <a href="https://www.sunnewsonline.com/apc-tackles-obaseki-over-alleged-abandonment-of-governance-in-edo/"><div class="thumbnail-container animate-lazy  size-715 "><img width="120" height="86" src="https://www.sunnewsonline.com/wp-content/themes/jnews/assets/img/jeg-empty.png" class="attachment-jnews-120x86 size-jnews-120x86 lazyload wp-post-image" alt="APC tackles Obaseki over alleged abandonment of governance in Edo" loading="lazy" sizes="(max-width: 120px) 100vw, 120px" data-src="https://sunnewsonline.com/wp-content/uploads/2022/05/Obaseki-1-120x86.jpeg" data-srcset="https://sunnewsonline.com/wp-content/uploads/2022/05/Obaseki-1-120x86.jpeg 120w, https://sunnewsonline.com/wp-content/uploads/2022/05/Obaseki-1-350x250.jpeg 350w, https://sunnewsonline.com/wp-content/uploads/2022/05/Obaseki-1-750x536.jpeg 750w" data-sizes="auto" data-expand="700"/></div></a>
+                        
+                    </div>
+                    <div class="jeg_postblock_content">
+                        <h3 class="jeg_post_title">
+                            <a href="https://www.sunnewsonline.com/apc-tackles-obaseki-over-alleged-abandonment-of-governance-in-edo/">APC tackles Obaseki over alleged abandonment of governance in Edo</a>
+                        </h3>
+                        <div class="jeg_post_meta"><div class="jeg_meta_date"><a href="https://www.sunnewsonline.com/apc-tackles-obaseki-over-alleged-abandonment-of-governance-in-edo/"><i class="fa fa-clock-o"></i> 11th May 2022</a></div></div>
+                    </div>
+                </article><article class="jeg_post jeg_pl_sm format-standard">
+                    <div class="jeg_thumb">
+                        
+                        <a href="https://www.sunnewsonline.com/police-nab-6-suspected-drug-peddlers-in-abuja-recovers-large-quantities-of-drugs/"><div class="thumbnail-container animate-lazy  size-715 "><img width="120" height="86" src="https://www.sunnewsonline.com/wp-content/themes/jnews/assets/img/jeg-empty.png" class="attachment-jnews-120x86 size-jnews-120x86 lazyload wp-post-image" alt="Police nab 6 suspected drug peddlers in Abuja, recovers large quantities of drugs" loading="lazy" sizes="(max-width: 120px) 100vw, 120px" data-src="https://sunnewsonline.com/wp-content/uploads/2022/05/1-2-120x86.png" data-srcset="https://sunnewsonline.com/wp-content/uploads/2022/05/1-2-120x86.png 120w, https://sunnewsonline.com/wp-content/uploads/2022/05/1-2-350x250.png 350w, https://sunnewsonline.com/wp-content/uploads/2022/05/1-2-750x536.png 750w" data-sizes="auto" data-expand="700"/></div></a>
+                        
+                    </div>
+                    <div class="jeg_postblock_content">
+                        <h3 class="jeg_post_title">
+                            <a href="https://www.sunnewsonline.com/police-nab-6-suspected-drug-peddlers-in-abuja-recovers-large-quantities-of-drugs/">Police nab 6 suspected drug peddlers in Abuja, recovers large quantities of drugs</a>
+                        </h3>
+                        <div class="jeg_post_meta"><div class="jeg_meta_date"><a href="https://www.sunnewsonline.com/police-nab-6-suspected-drug-peddlers-in-abuja-recovers-large-quantities-of-drugs/"><i class="fa fa-clock-o"></i> 11th May 2022</a></div></div>
+                    </div>
+                </article>
+                    </div>
+                </div>
+                    <div class="module-overlay">
+				    <div class="preloader_type preloader_dot">
+				        <div class="module-preloader jeg_preloader dot">
+				            <span></span><span></span><span></span>
+				        </div>
+				        <div class="module-preloader jeg_preloader circle">
+				            <div class="jnews_preloader_circle_outer">
+				                <div class="jnews_preloader_circle_inner"></div>
+				            </div>
+				        </div>
+				        <div class="module-preloader jeg_preloader square">
+				            <div class="jeg_square">
+				                <div class="jeg_square_inner"></div>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+                </div>
+                <div class="jeg_block_navigation">
+                    <div class="navigation_overlay"><div class="module-preloader jeg_preloader"><span></span><span></span><span></span></div></div>
+                    
+                    
+                </div>
+					
+					<script>var jnews_module_883710_4_627befdb22e8a = {"header_icon":"","first_title":"Trending","second_title":"","url":"","header_type":"heading_6","header_background":"","header_secondary_background":"","header_text_color":"","header_line_color":"","header_accent_color":"","header_filter_category":"","header_filter_author":"","header_filter_tag":"","header_filter_text":"All","post_type":"post","content_type":"all","number_post":"5","post_offset":"0","unique_content":"disable","include_post":"","exclude_post":"","include_category":"","exclude_category":"","include_author":"","include_tag":"","exclude_tag":"","sort_by":"latest","date_format":"default","date_format_custom":"Y\/m\/d","excerpt_length":"17","excerpt_ellipsis":"...","force_normal_image_load":"","pagination_mode":"disable","pagination_nextprev_showtext":"","pagination_number_post":"4","pagination_scroll_limit":"0","boxed":"1","boxed_shadow":"","el_id":"","el_class":"","scheme":"normal","column_width":"auto","title_color":"","accent_color":"","alt_color":"","excerpt_color":"","css":"","paged":1,"column_class":"jeg_col_1o3","class":"jnews_block_17"};</script>
+				</div></div></div></div></div>		</div>
+
+		<div class="jeg_ad jeg_article jnews_article_bottom_ads">
+			<div class="ads-wrapper  "></div>		</div>
+
+	</div>
+</div>
+                </div>
+            </div>
+
+            <div id="post-body-class" class="post-template-default single single-post postid-883710 single-format-standard wp-embed-responsive jeg_toggle_light jeg_single_tpl_1 jnews jnews_boxed_container jnews_boxed_container_shadow jsc_normal wpb-js-composer js-comp-ver-6.9.0 vc_responsive aa-prefix-sunne-"></div>
+
+            
+        </div>
+
+        <div class="post-ajax-overlay">
+    <div class="preloader_type preloader_dot">
+        <div class="newsfeed_preloader jeg_preloader dot">
+            <span></span><span></span><span></span>
+        </div>
+        <div class="newsfeed_preloader jeg_preloader circle">
+            <div class="jnews_preloader_circle_outer">
+                <div class="jnews_preloader_circle_inner"></div>
+            </div>
+        </div>
+        <div class="newsfeed_preloader jeg_preloader square">
+            <div class="jeg_square"><div class="jeg_square_inner"></div></div>
+        </div>
+    </div>
+</div>
+    </div>
+        <div class="footer-holder" id="footer" data-id="footer">
+            <div class="jeg_footer jeg_footer_1 normal">
+    <div class="jeg_footer_container jeg_container">
+        <div class="jeg_footer_content">
+            <div class="container">
+
+                <div class="row">
+                    <div class="jeg_footer_primary clearfix">
+                        <div class="col-md-4 footer_column">
+                            <div class="footer_widget widget_jnews_about" id="jnews_about-1">        <div class="jeg_about ">
+									            <p></p>
+
+			        </div>
+		</div><div class="footer_widget widget_jnews_social" id="jnews_social-1">
+        <div class="jeg_social_wrap ">
+			                <p>
+					Follow us on social media:                </p>
+			
+            <div class="socials_widget   nobg">
+				<a href="https://www.facebook.com/thesunnigeria/" target="_blank" rel="external noopener nofollow" class="jeg_facebook">
+                                            <i class="fa fa-facebook"></i>
+                                            
+                                        </a><a href="https://twitter.com/thesunnigeria/" target="_blank" rel="external noopener nofollow" class="jeg_twitter">
+                                            <i class="fa fa-twitter"></i>
+                                            
+                                        </a><a href="#" target="_blank" rel="external noopener nofollow" class="jeg_google-plus removed">
+                                            <i class="fa fa-google-plus"></i>
+                                            
+                                        </a><a href="#" target="_blank" rel="external noopener nofollow" class="jeg_instagram">
+                                            <i class="fa fa-instagram"></i>
+                                            
+                                        </a><a href="https://www.youtube.com/channel/UC2cJnYydeAFBVAhT4L0ojZg" target="_blank" rel="external noopener nofollow" class="jeg_youtube">
+                                            <i class="fa fa-youtube-play"></i>
+                                            
+                                        </a><a href="http://sunnewsonline.com/feed/" target="_blank" rel="external noopener nofollow" class="jeg_rss">
+                                            <i class="fa fa-rss"></i>
+                                            
+                                        </a>            </div>
+
+						<style scoped="">#jnews_social-1 .jeg_social_wrap .socials_widget i{color:#0c2461;}</style>        </div>
+
+		</div>
+		<div class="footer_widget widget_recent_entries" id="recent-posts-1">
+		<div class="jeg_footer_heading jeg_footer_heading_1"><h3 class="jeg_footer_title"><span>Latest News</span></h3></div>
+		<ul>
+											<li>
+					<a href="https://www.sunnewsonline.com/road-to-2024-diri-tasks-political-parties-on-peaceful-primaries/">Road to 2024:  Diri  tasks political parties on peaceful primaries</a>
+									</li>
+											<li>
+					<a href="https://www.sunnewsonline.com/ekiti-2022-inec-concludes-configuration-of-bvas-to-conduct-mock-voter-accreditation/">Ekiti 2022: INEC concludes configuration of BVAS, to conduct mock voter accreditation</a>
+									</li>
+											<li>
+					<a href="https://www.sunnewsonline.com/asup-to-embark-on-two-week-warning-strike-monday/">ASUP to embark on two-week warning strike Monday </a>
+									</li>
+											<li>
+					<a href="https://www.sunnewsonline.com/apc-tackles-obaseki-over-alleged-abandonment-of-governance-in-edo/">APC tackles Obaseki over alleged abandonment of governance in Edo</a>
+									</li>
+											<li>
+					<a href="https://www.sunnewsonline.com/police-nab-6-suspected-drug-peddlers-in-abuja-recovers-large-quantities-of-drugs/">Police nab 6 suspected drug peddlers in Abuja, recovers large quantities of drugs</a>
+									</li>
+											<li>
+					<a href="https://www.sunnewsonline.com/2023-president-bakare-submits-forms-banks-of-divine-favour-for-apc-ticket/">2023 president: Bakare submits forms, banks of divine favour for APC ticket</a>
+									</li>
+											<li>
+					<a href="https://www.sunnewsonline.com/eu-appoints-jonathan-to-ecam-board/">EU appoints Jonathan to ECAM board</a>
+									</li>
+											<li>
+					<a href="https://www.sunnewsonline.com/2023-igbo-youths-to-jonathan-forget-your-ambition-support-seast/">2023: Igbo youths to Jonathan, forget your ambition, support S’East</a>
+									</li>
+											<li>
+					<a href="https://www.sunnewsonline.com/2023-presidential-election-group-urge-pdp-apc-aspirants-from-other-zones-to-jettison-ambition-for-candidates-of-south-east-zone/">2023 Presidential election: Group urge PDP, APC aspirants from other zones to jettison ambition for candidates of South-East zone</a>
+									</li>
+											<li>
+					<a href="https://www.sunnewsonline.com/fg-gives-apongbon-traders-one-month-to-relocate/">FG  gives Apongbon traders one month to relocate</a>
+									</li>
+											<li>
+					<a href="https://www.sunnewsonline.com/road-to-2023-idoma-rejects-ortoms-consensus-candidate/">Road to 2023: Idoma rejects Ortom’s consensus candidate</a>
+									</li>
+											<li>
+					<a href="https://www.sunnewsonline.com/strikefg-to-meet-asuu-others-tomorrow/">Strike:FG to meet ASUU, others tomorrow </a>
+									</li>
+											<li>
+					<a href="https://www.sunnewsonline.com/2023-primaries-conducted-after-june-3-null-and-void-inec-insists/">2023: Primaries conducted after June 3 null and void, INEC insists</a>
+									</li>
+											<li>
+					<a href="https://www.sunnewsonline.com/qnet-harps-on-importance-of-direct-selling-model-to-youth-empowerment/">Qnet harps on importance of direct selling model to youth empowerment</a>
+									</li>
+											<li>
+					<a href="https://www.sunnewsonline.com/road-to-2023-stalwart-urges-apc-delegates-to-vote-young-president/">Road to 2023: Stalwart urges APC delegates to vote young president</a>
+									</li>
+											<li>
+					<a href="https://www.sunnewsonline.com/ekiti-2022-my-govt-will-lift-people-out-of-poverty-unemployment-oni-sdp-guber-candidate/">Ekiti 2022: My govt will lift people out of poverty, unemployment – Oni, SDP guber candidate</a>
+									</li>
+											<li>
+					<a href="https://www.sunnewsonline.com/nigerias-gdp-grew-by-4-03-q3-of-2021-nbs/">Nigeria’s GDP grew by 4.03% Q3 of 2021 – NBS</a>
+									</li>
+											<li>
+					<a href="https://www.sunnewsonline.com/civil-war-veterans-protest-in-ibadan-over-non-payment-of-entitlements-for-44-years/">Civil war veterans protest in Ibadan over non-payment of entitlements for 44 years</a>
+									</li>
+											<li>
+					<a href="https://www.sunnewsonline.com/fec-approves-over-n2-billion-to-52-vehicles-for-civil-defence/">FEC approves over N2 billion to 52 vehicles for civil defence</a>
+									</li>
+											<li>
+					<a href="https://www.sunnewsonline.com/why-nigerian-celebrities-patronise-our-brand-e4luxury-jewellery-ceo/">Why Nigerian celebrities patronise our brand – E4luxury Jewellery CEO</a>
+									</li>
+					</ul>
+
+		</div>                        </div>
+                        <div class="col-md-4 footer_column">
+                                                    </div>
+                        <div class="col-md-4 footer_column">
+                            <div class="footer_widget widget_categories" id="categories-5"><div class="jeg_footer_heading jeg_footer_heading_1"><h3 class="jeg_footer_title"><span>Categories</span></h3></div>
+			<ul>
+					<li class="cat-item cat-item-43"><a href="https://www.sunnewsonline.com/category/abuja-metro/">Abuja Metro</a>
+</li>
+	<li class="cat-item cat-item-96187"><a href="https://www.sunnewsonline.com/category/anambra-watch/">Anambra Watch</a>
+</li>
+	<li class="cat-item cat-item-48067"><a href="https://www.sunnewsonline.com/category/arts/">Arts</a>
+</li>
+	<li class="cat-item cat-item-11"><a href="https://www.sunnewsonline.com/category/columns/broken-tongues/">Broken Tongues</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="https://www.sunnewsonline.com/category/business/">Business</a>
+</li>
+	<li class="cat-item cat-item-38"><a href="https://www.sunnewsonline.com/category/business-week/">Business Week</a>
+</li>
+	<li class="cat-item cat-item-48146"><a href="https://www.sunnewsonline.com/category/cartoons/">Cartoons</a>
+</li>
+	<li class="cat-item cat-item-49930"><a href="https://www.sunnewsonline.com/category/citizen-joe/">Citizen Joe</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="https://www.sunnewsonline.com/category/columns/">Columns</a>
+</li>
+	<li class="cat-item cat-item-30"><a href="https://www.sunnewsonline.com/category/cover-stories/">Cover</a>
+</li>
+	<li class="cat-item cat-item-29230"><a href="https://www.sunnewsonline.com/category/culture/" title="You can add some category description here.">Culture</a>
+</li>
+	<li class="cat-item cat-item-13"><a href="https://www.sunnewsonline.com/category/columns/duro-onabule/">Duro Onabule</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="https://www.sunnewsonline.com/category/editorial/">Editorial</a>
+</li>
+	<li class="cat-item cat-item-42"><a href="https://www.sunnewsonline.com/category/education-review/">Education Review</a>
+</li>
+	<li class="cat-item cat-item-112"><a href="https://www.sunnewsonline.com/category/effect/">Effect</a>
+</li>
+	<li class="cat-item cat-item-139"><a href="https://www.sunnewsonline.com/category/elections/">Elections</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="https://www.sunnewsonline.com/category/entertainment/">Entertainment</a>
+</li>
+	<li class="cat-item cat-item-82"><a href="https://www.sunnewsonline.com/category/events/">Events</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="https://www.sunnewsonline.com/category/features/">Features</a>
+</li>
+	<li class="cat-item cat-item-14"><a href="https://www.sunnewsonline.com/category/columns/femi-adesina/">Femi Adesina</a>
+</li>
+	<li class="cat-item cat-item-115"><a href="https://www.sunnewsonline.com/category/food-drinks/">Food &amp; Drinks</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="https://www.sunnewsonline.com/category/columns/frank-talk/">Frank Talk</a>
+</li>
+	<li class="cat-item cat-item-16"><a href="https://www.sunnewsonline.com/category/columns/funke-egbemode/">Funke Egbemode</a>
+</li>
+	<li class="cat-item cat-item-111"><a href="https://www.sunnewsonline.com/category/gallery/">Gallery</a>
+</li>
+	<li class="cat-item cat-item-54614"><a href="https://www.sunnewsonline.com/category/columns/global-square-by-kenneth-okonkwo/">Global Square by Kenneth Okonkwo</a>
+</li>
+	<li class="cat-item cat-item-90"><a href="https://www.sunnewsonline.com/category/health/">Health</a>
+</li>
+	<li class="cat-item cat-item-17"><a href="https://www.sunnewsonline.com/category/columns/insights/">Insights</a>
+</li>
+	<li class="cat-item cat-item-18"><a href="https://www.sunnewsonline.com/category/columns/kalu-leadership-series/">Kalu Leadership Series</a>
+</li>
+	<li class="cat-item cat-item-45"><a href="https://www.sunnewsonline.com/category/columns/kunle-solaja/">Kunle Solaja</a>
+</li>
+	<li class="cat-item cat-item-46"><a href="https://www.sunnewsonline.com/category/columns/kunle-solaja-columns/">Kunle Solaja</a>
+</li>
+	<li class="cat-item cat-item-106"><a href="https://www.sunnewsonline.com/category/letters/">Letters</a>
+</li>
+	<li class="cat-item cat-item-36"><a href="https://www.sunnewsonline.com/category/lifeline/">Lifeline</a>
+</li>
+	<li class="cat-item cat-item-29231"><a href="https://www.sunnewsonline.com/category/lifestyle/" title="You can add some category description here.">Lifestyle</a>
+</li>
+	<li class="cat-item cat-item-41"><a href="https://www.sunnewsonline.com/category/literary-review/">Literary Review</a>
+</li>
+	<li class="cat-item cat-item-37"><a href="https://www.sunnewsonline.com/category/marketing-matters/">Marketing Matters</a>
+</li>
+	<li class="cat-item cat-item-53921"><a href="https://www.sunnewsonline.com/category/columns/muiz-banire/">Muiz Banire</a>
+</li>
+	<li class="cat-item cat-item-2"><a href="https://www.sunnewsonline.com/category/national/">National</a>
+</li>
+	<li class="cat-item cat-item-29232"><a href="https://www.sunnewsonline.com/category/news/" title="You can add some category description here.">News</a>
+</li>
+	<li class="cat-item cat-item-19"><a href="https://www.sunnewsonline.com/category/columns/offside-musings/">Offside Musings</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="https://www.sunnewsonline.com/category/opinion/">Opinion</a>
+</li>
+	<li class="cat-item cat-item-39"><a href="https://www.sunnewsonline.com/category/oriental-news/">oriental news</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="https://www.sunnewsonline.com/category/politics/">Politics</a>
+</li>
+	<li class="cat-item cat-item-48139"><a href="https://www.sunnewsonline.com/category/press-release/">Press Release</a>
+</li>
+	<li class="cat-item cat-item-20"><a href="https://www.sunnewsonline.com/category/columns/pressclips/">PressClips</a>
+</li>
+	<li class="cat-item cat-item-21"><a href="https://www.sunnewsonline.com/category/columns/public-sphere/">Public Sphere</a>
+</li>
+	<li class="cat-item cat-item-22"><a href="https://www.sunnewsonline.com/category/columns/ralph-egbu/">Ralph Egbu</a>
+</li>
+	<li class="cat-item cat-item-48"><a href="https://www.sunnewsonline.com/category/columns/shola-oshunkeye/">Shola Oshunkeye</a>
+</li>
+	<li class="cat-item cat-item-23"><a href="https://www.sunnewsonline.com/category/columns/sideview/">Sideview</a>
+</li>
+	<li class="cat-item cat-item-40"><a href="https://www.sunnewsonline.com/category/south-west-magazine/">South-west Magazine</a>
+</li>
+	<li class="cat-item cat-item-53922"><a href="https://www.sunnewsonline.com/category/sponsored-post/">Sponsored Post</a>
+</li>
+	<li class="cat-item cat-item-7297"><a href="https://www.sunnewsonline.com/category/sporting-sun/">Sporting Sun</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="https://www.sunnewsonline.com/category/sports/">Sports</a>
+</li>
+	<li class="cat-item cat-item-33"><a href="https://www.sunnewsonline.com/category/sun-girl/">Sun Girl</a>
+</li>
+	<li class="cat-item cat-item-116"><a href="https://www.sunnewsonline.com/category/tea-time/">Tea Time</a>
+</li>
+	<li class="cat-item cat-item-24"><a href="https://www.sunnewsonline.com/category/columns/the-flipside-eric-osagie/">The Flipside – Eric Osagie</a>
+</li>
+	<li class="cat-item cat-item-100"><a href="https://www.sunnewsonline.com/category/the-sun-awards-live/">The Sun Awards Live</a>
+</li>
+	<li class="cat-item cat-item-138"><a href="https://www.sunnewsonline.com/category/the-sun-tv/">The Sun TV</a>
+</li>
+	<li class="cat-item cat-item-104"><a href="https://www.sunnewsonline.com/category/columns/thoughts-talks/">Thoughts &amp; Talks</a>
+</li>
+	<li class="cat-item cat-item-107"><a href="https://www.sunnewsonline.com/category/time-out/">Time Out</a>
+</li>
+	<li class="cat-item cat-item-44"><a href="https://www.sunnewsonline.com/category/todays-cover/">Today&#39;s cover</a>
+</li>
+	<li class="cat-item cat-item-47"><a href="https://www.sunnewsonline.com/category/columns/tola-adeniyi/">Tola Adeniyi</a>
+</li>
+	<li class="cat-item cat-item-29233"><a href="https://www.sunnewsonline.com/category/travel/" title="You can add some category description here.">Travel</a>
+</li>
+	<li class="cat-item cat-item-114"><a href="https://www.sunnewsonline.com/category/travel-tourism/">Travel &amp; Tourism</a>
+</li>
+	<li class="cat-item cat-item-31"><a href="https://www.sunnewsonline.com/category/trending/">Trending</a>
+</li>
+	<li class="cat-item cat-item-34"><a href="https://www.sunnewsonline.com/category/tsweekend/">TSWeekend</a>
+</li>
+	<li class="cat-item cat-item-25"><a href="https://www.sunnewsonline.com/category/columns/turf-game/">Turf Game</a>
+</li>
+	<li class="cat-item cat-item-35"><a href="https://www.sunnewsonline.com/category/uncategorized/">Uncategorized</a>
+</li>
+	<li class="cat-item cat-item-32"><a href="https://www.sunnewsonline.com/category/updates/">Updates</a>
+</li>
+	<li class="cat-item cat-item-26"><a href="https://www.sunnewsonline.com/category/columns/views-from-abroad/">Views from Abroad</a>
+</li>
+	<li class="cat-item cat-item-117"><a href="https://www.sunnewsonline.com/category/voices/">Voices</a>
+</li>
+	<li class="cat-item cat-item-29234"><a href="https://www.sunnewsonline.com/category/world/" title="You can add some category description here.">World</a>
+</li>
+	<li class="cat-item cat-item-89"><a href="https://www.sunnewsonline.com/category/world-news/">World News</a>
+</li>
+			</ul>
+
+			</div>                        </div>
+                    </div>
+                </div>
+
+
+                
+                <div class="jeg_footer_secondary clearfix">
+
+                    <!-- secondary footer right -->
+
+                    <div class="footer_right">
+
+                        <ul class="jeg_menu_footer"><li id="menu-item-50" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="https://www.sunnewsonline.com/home/">Home</a></li>
+<li id="menu-item-49" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-49"><a href="https://www.sunnewsonline.com/about-us/">About Us</a></li>
+<li id="menu-item-48" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-48"><a href="https://www.sunnewsonline.com/paper-ad-rate/">Paper Ad Rate</a></li>
+<li id="menu-item-47" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-47"><a href="https://www.sunnewsonline.com/online-ad-rates/">Online Ad Rate</a></li>
+<li id="menu-item-46" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-46"><a href="https://www.sunnewsonline.com/the-team/">The Team</a></li>
+<li id="menu-item-45" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-45"><a href="https://www.sunnewsonline.com/contact-us/">Contact Us</a></li>
+<li id="menu-item-225254" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-225254"><a href="https://www.sunnewsonline.com/privacy-policy/">Privacy Policy</a></li>
+</ul>
+                        
+                        
+                    </div>
+
+                    <!-- secondary footer left -->
+
+                    
+                    
+                                            <p class="copyright"> © 2019 <a href="http://sunnewsonline.com" title="The Sun Nigeria newspaper">The Sun Nigeria</a> - Managed by <a href="http://netsera.com.ng" title="Netsera">Netsera</a>. </p>
+                    
+                </div> <!-- secondary menu -->
+
+                
+
+            </div>
+        </div>
+    </div>
+</div><!-- /.footer -->
+        </div>
+
+        <div class="jscroll-to-top">
+        	<a href="#back-to-top" class="jscroll-to-top_link"><i class="fa fa-angle-up"></i></a>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation
+    ============================================= -->
+<div id="jeg_off_canvas" class="normal">
+    <a href="#" class="jeg_menu_close"><i class="jegicon-cross"></i></a>
+    <div class="jeg_bg_overlay"></div>
+    <div class="jeg_mobile_wrapper">
+        <div class="nav_wrap">
+    <div class="item_main">
+        <!-- Search Form -->
+<div class="jeg_aside_item jeg_search_wrapper jeg_search_no_expand round">
+    <a href="#" class="jeg_search_toggle"><i class="fa fa-search"></i></a>
+    <form action="https://www.sunnewsonline.com/" method="get" class="jeg_search_form" target="_top">
+    <input name="s" class="jeg_search_input" placeholder="Search..." type="text" value="" autocomplete="off"/>
+    <button aria-label="Search Button" type="submit" class="jeg_search_button btn"><i class="fa fa-search"></i></button>
+</form>
+<!-- jeg_search_hide with_result no_result -->
+<div class="jeg_search_result jeg_search_hide with_result">
+    <div class="search-result-wrapper">
+    </div>
+    <div class="search-link search-noresult">
+        No Result    </div>
+    <div class="search-link search-all-button">
+        <i class="fa fa-search"></i> View All Result    </div>
+</div></div><div class="jeg_aside_item">
+    <ul class="jeg_mobile_menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-252978"><a href="https://www.sunnewsonline.com/home-1/">Home</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-252985"><a href="https://www.sunnewsonline.com/category/national/">National</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-253028"><a href="https://www.sunnewsonline.com/category/columns/">Columns</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253007"><a href="https://www.sunnewsonline.com/category/columns/broken-tongues/">Broken Tongues</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253008"><a href="https://www.sunnewsonline.com/category/columns/capital-matters/">Capital Matters</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253009"><a href="https://www.sunnewsonline.com/category/columns/diabetes-corner/">Diabetes Corner</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253010"><a href="https://www.sunnewsonline.com/category/columns/duro-onabule/">Duro Onabule</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253011"><a href="https://www.sunnewsonline.com/category/columns/femi-adesina/">Femi Adesina</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253012"><a href="https://www.sunnewsonline.com/category/columns/frank-talk/">Frank Talk</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253013"><a href="https://www.sunnewsonline.com/category/columns/funke-egbemode/">Funke Egbemode</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253014"><a href="https://www.sunnewsonline.com/category/columns/insights/">Insights</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253015"><a href="https://www.sunnewsonline.com/category/columns/kalu-leadership-series/">Kalu Leadership Series</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253016"><a href="https://www.sunnewsonline.com/category/columns/kunle-solaja/">Kunle Solaja</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253018"><a href="https://www.sunnewsonline.com/category/columns/offside-musings/">Offside Musings</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253019"><a href="https://www.sunnewsonline.com/category/columns/pressclips/">PressClips</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253020"><a href="https://www.sunnewsonline.com/category/columns/public-sphere/">Public Sphere</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253021"><a href="https://www.sunnewsonline.com/category/columns/ralph-egbu/">Ralph Egbu</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253022"><a href="https://www.sunnewsonline.com/category/columns/shola-oshunkeye/">Shola Oshunkeye</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253023"><a href="https://www.sunnewsonline.com/category/columns/sideview/">Sideview</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253024"><a href="https://www.sunnewsonline.com/category/columns/the-flipside-eric-osagie/">The Flipside – Eric Osagie</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253045"><a href="https://www.sunnewsonline.com/category/columns/tola-adeniyi/">Tola Adeniyi</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-252984"><a href="https://www.sunnewsonline.com/category/business/">Business</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253044"><a href="https://www.sunnewsonline.com/category/politics/">Politics</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253030"><a href="https://www.sunnewsonline.com/category/entertainment/">Entertainment</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253029"><a href="https://www.sunnewsonline.com/category/the-sun-tv/">The Sun TV</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253031"><a href="https://www.sunnewsonline.com/category/sporting-sun/">Sporting Sun</a></li>
+</ul></div>    </div>
+    <div class="item_bottom">
+        <div class="jeg_aside_item socials_widget nobg">
+    <a href="https://www.facebook.com/TheSunNigeria/" target="_blank" rel="external noopener nofollow" class="jeg_facebook"><i class="fa fa-facebook"></i> </a><a href="https://twitter.com/thesunnigeria" target="_blank" rel="external noopener nofollow" class="jeg_twitter"><i class="fa fa-twitter"></i> </a><a href="https://www.youtube.com/channel/UC2cJnYydeAFBVAhT4L0ojZg" target="_blank" rel="external noopener nofollow" class="jeg_youtube"><i class="fa fa-youtube-play"></i> </a><a href="#" target="_blank" rel="external noopener nofollow" class="jeg_rss"><i class="fa fa-rss"></i> </a></div><div class="jeg_aside_item jeg_aside_copyright">
+	<p>© 2019 <a href="http://sunnewsonline.com" title="The Sun Nigeria newspaper">The Sun Nigeria</a> - Managed by <a href="http://netsera.com.ng" title="Netsera">Netsera</a>.</p>
+</div>    </div>
+</div>    </div>
+</div><script type="text/javascript">var jfla = ["view_counter"]</script><div style="display: none;" id="nxsFavNotice"><div id="nxsFavNoticeCnt">Posting....</div></div><div id="selectShareContainer">
+                        <div class="selectShare-inner">
+                            <div class="select_share jeg_share_button">              
+                                <button class="select-share-button jeg_btn-facebook" data-url="http://www.facebook.com/sharer.php?u=[url]&amp;quote=[selected_text]" data-post-url="https%3A%2F%2Fwww.sunnewsonline.com%2Fneco-postpones-unity-schools-exams-to-may-7%2F" data-image-url="" data-title="NECO%20postpones%20unity%20schools%E2%80%99%20exams%20to%20May%207"><i class="fa fa-facebook-official"></i></button><button class="select-share-button jeg_btn-twitter" data-url="https://twitter.com/intent/tweet?text=[selected_text]&amp;url=[url]" data-post-url="https%3A%2F%2Fwww.sunnewsonline.com%2Fneco-postpones-unity-schools-exams-to-may-7%2F" data-image-url="" data-title="NECO%20postpones%20unity%20schools%E2%80%99%20exams%20to%20May%207"><i class="fa fa-twitter"></i>
+                            </button></div>
+                            <div class="selectShare-arrowClip">
+                                <div class="selectShare-arrow"></div>      
+                            </div> 
+                        </div>      
+                      </div>	<div style="display:none">
+			<div class="grofile-hash-map-c33a238eea86ab6d559e938a1636b8a0">
+		</div>
+		</div>
+		<div class="jeg_read_progress_wrapper"></div><link rel="stylesheet" id="modal-css" href="https://www.sunnewsonline.com/wp-content/plugins/social-networks-auto-poster-facebook-twitter-g/js-css/jquery.modal.min.css?ver=4.3.25" type="text/css" media="all"/>
+<script type="text/javascript" id="adsforwp-ads-front-js-js-extra">
+/* <![CDATA[ */
+var adsforwp_obj = {"ajax_url":"https:\/\/www.sunnewsonline.com\/wp-admin\/admin-ajax.php","adsforwp_front_nonce":"830bc2b5a6"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.sunnewsonline.com/wp-content/plugins/ads-for-wp/public/assets/js/ads-front.min.js?ver=1.9.18" id="adsforwp-ads-front-js-js"></script>
+<script type="text/javascript" id="adsforwp-ads-frontend-js-js-extra">
+/* <![CDATA[ */
+var adsforwp_browser_obj = [];
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.sunnewsonline.com/wp-content/plugins/ads-for-wp/public/assets/js/ads-frontend.min.js?ver=1.9.18" id="adsforwp-ads-frontend-js-js"></script>
+<script type="text/javascript" id="ppress-frontend-script-js-extra">
+/* <![CDATA[ */
+var pp_ajax_form = {"ajaxurl":"https:\/\/www.sunnewsonline.com\/wp-admin\/admin-ajax.php","confirm_delete":"Are you sure?","deleting_text":"Deleting...","deleting_error":"An error occurred. Please try again.","nonce":"a554c05254","disable_ajax_form":"false"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.sunnewsonline.com/wp-content/plugins/wp-user-avatar/assets/js/frontend.min.js?ver=3.2.11" id="ppress-frontend-script-js"></script>
+<script type="text/javascript" src="https://secure.gravatar.com/js/gprofiles.js?ver=202219" id="grofiles-cards-js"></script>
+<script type="text/javascript" id="wpgroho-js-extra">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.sunnewsonline.com/wp-content/plugins/jetpack/modules/wpgroho.js?ver=10.9" id="wpgroho-js"></script>
+<script type="text/javascript" src="https://www.sunnewsonline.com/wp-includes/js/comment-reply.min.js?ver=5.9.3" id="comment-reply-js"></script>
+<script type="text/javascript" src="https://www.sunnewsonline.com/wp-includes/js/hoverIntent.min.js?ver=1.10.2" id="hoverIntent-js"></script>
+<script type="text/javascript" src="https://www.sunnewsonline.com/wp-includes/js/imagesloaded.min.js?ver=4.1.4" id="imagesloaded-js"></script>
+<script type="text/javascript" id="jnews-frontend-js-extra">
+/* <![CDATA[ */
+var jnewsoption = {"login_reload":"https:\/\/www.sunnewsonline.com\/neco-postpones-unity-schools-exams-to-may-7","popup_script":"magnific","single_gallery":"","ismobile":"","isie":"","sidefeed_ajax":"","language":"en_US","module_prefix":"jnews_module_ajax_","live_search":"1","postid":"883710","isblog":"1","admin_bar":"0","follow_video":"","follow_position":"top_right","rtl":"0","gif":"","lang":{"invalid_recaptcha":"Invalid Recaptcha!","empty_username":"Please enter your username!","empty_email":"Please enter your email!","empty_password":"Please enter your password!"},"recaptcha":"0","site_slug":"\/","site_domain":"www.sunnewsonline.com","zoom_button":"0"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.sunnewsonline.com/wp-content/themes/jnews/assets/dist/frontend.min.js?ver=1.0.0" id="jnews-frontend-js"></script>
+<!--[if lt IE 9]>
+<script type='text/javascript' src='https://www.sunnewsonline.com/wp-content/themes/jnews/assets/js/html5shiv.min.js?ver=1.0.0' id='html5shiv-js'></script>
+<![endif]-->
+<script type="text/javascript" src="https://www.sunnewsonline.com/wp-content/plugins/jnews-social-login/assets/js/plugin.js?ver=10.0.2" id="jnews-social-login-style-js"></script>
+<script type="text/javascript" id="jnews-select-share-js-extra">
+/* <![CDATA[ */
+var jnews_select_share = {"is_customize_preview":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.sunnewsonline.com/wp-content/plugins/jnews-social-share/assets/js/plugin.js" id="jnews-select-share-js"></script>
+<script type="text/javascript" src="https://www.sunnewsonline.com/wp-content/plugins/social-networks-auto-poster-facebook-twitter-g/js-css/jquery.modal.min.js?ver=4.3.25" id="modal-js"></script>
+<div class="jeg_ad jnews_mobile_sticky_ads "></div><script type="application/ld+json">{"@context":"http:\/\/schema.org","@type":"article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.sunnewsonline.com\/neco-postpones-unity-schools-exams-to-may-7\/"},"dateCreated":"2022-04-21 03:59:18","datePublished":"2022-04-21 03:59:18","dateModified":"2022-04-21 01:58:35","url":"https:\/\/www.sunnewsonline.com\/neco-postpones-unity-schools-exams-to-may-7\/","headline":"NECO postpones unity schools\u2019 exams to May 7","name":"NECO postpones unity schools\u2019 exams to May 7","articleBody":"<p class=\"p1\"><span class=\"s1\">From <strong>John Adams, Minna<\/strong><\/span><\/p>\r\n<p class=\"p3\"><strong><span class=\"s2\">The<\/span><span class=\"s1\"> National Examinations Council (NECO) has postponed this year\u2019s National Common Entrance Examination (NCEE) earlier scheduled to take place on the 23rd April, 2022 across the country.<\/span><\/strong><\/p>\r\n<p class=\"p4\"><span class=\"s1\">The examination body in a statement in Minna on Wednesday by the Head Information and Public Relation unity, Mallam Sani Azeez said the postponement had become necessary \u201cto give states with low registration of candidates the opportunity to register their candidates for the examination\u201d.<\/span><\/p>\r\n<p class=\"p4\"><span class=\"s1\">Azeez however said that the Examination which is being conducted for admission into Federal Unity Colleges in the country will now take place on 7th May, 2022 across the country.<\/span><\/p>\r\n<p class=\"p4\"><span class=\"s1\">While regretting any inconvenience the new date might cause the candidates, Mallam Azeez urged \u201call candidates, parents, guardians and relevant stakeholders are therefore enjoined to take note of the new date for the examination\u201d.<\/span><\/p>\r\n<p class=\"p4\"><span class=\"s1\">He however disclosed that registration of candidates will continue till the new date of the examination, pointing out that \u201cCandidates, parents and guardians are advised to download the new Examination Time Table from the Council\u2019s website: www.neco.gov.ng.\u201d<\/span><\/p>","author":{"@type":"Person","name":"Rapheal","url":"https:\/\/www.sunnewsonline.com\/author\/rapheal\/"},"articleSection":["National"],"image":{"@type":"ImageObject","url":"https:\/\/sunnewsonline.com\/wp-content\/uploads\/2022\/04\/National-Examinations-Council-NECO.jpg","width":600,"height":629},"publisher":{"@type":"Organization","name":"","url":"https:\/\/www.sunnewsonline.com","logo":{"@type":"ImageObject","url":""},"sameAs":["https:\/\/www.facebook.com\/TheSunNigeria\/","https:\/\/twitter.com\/thesunnigeria","https:\/\/www.youtube.com\/channel\/UC2cJnYydeAFBVAhT4L0ojZg","#"]}}</script>
+<script type="application/ld+json">{"@context":"http:\/\/schema.org","@type":"hentry","entry-title":"NECO postpones unity schools\u2019 exams to May 7","published":"2022-04-21 03:59:18","updated":"2022-04-21 01:58:35"}</script>
+<script type="application/ld+json">{"@context":"http:\/\/schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/www.sunnewsonline.com","name":"Home"}},{"@type":"ListItem","position":2,"item":{"@id":"https:\/\/www.sunnewsonline.com\/category\/national\/","name":"National"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/www.sunnewsonline.com","name":"Home"}},{"@type":"ListItem","position":4,"item":{"@id":"https:\/\/www.sunnewsonline.com\/category\/national\/","name":"National"}}]}</script>
+<script type="text/javascript">;!function(){"use strict";window.jnews=window.jnews||{},window.jnews.first_load=window.jnews.first_load||{},window.jnews.first_load=function(){var e=this,t=jnews.library,n="object"==typeof jnews&&"object"==typeof jnews.library;e.data=null,e.run_ajax=!0,e.run_loginregister=!0,e.clear=function(){e.run_ajax=!0,e.run_loginregister=!0,e.data=null},e.init=function(){n&&(t.globalBody.querySelectorAll(".jeg_popup_account").length&&jnews.loginregister&&e.run_loginregister&&(e.run_loginregister=!1,jnews.loginregister.init(),jnews.loginregister.hook_form()),jfla.length&&e.run_ajax&&(e.run_ajax=!1,e.do_ajax({action:"jnews_first_load_action",jnews_id:jnewsoption.postid,load_action:jfla})))},e.update_counter=function(){if(n){var o={total_view:t.globalBody.querySelectorAll(".jeg_share_stats .jeg_views_count .counts"),total_share:t.globalBody.querySelectorAll(".jeg_share_stats .jeg_share_count .counts"),total_comment:t.globalBody.querySelectorAll(".jeg_meta_comment a span")};t.forEach(Object.entries(e.data.counter),(function([e,n]){o[e].length&&t.forEach(o[e],(function(e,o){t.setText(e,n)}))}))}},e.do_ajax=function(o){if(n){var a=new XMLHttpRequest;a.onreadystatechange=function(){XMLHttpRequest.DONE===a.readyState&&200==a.status&&(e.data=JSON.parse(a.responseText),e.data.counter&&"object"==typeof e.data.counter&&e.update_counter())},a.open("POST",jnews_ajax_url,!0),a.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8"),a.send(t.httpBuildQuery(o))}}},window.jnews.first_load=new window.jnews.first_load,jnews.first_load.init()}();</script><script>!function(){window.advanced_ads_ready_queue=window.advanced_ads_ready_queue||[],advanced_ads_ready_queue.push=window.advanced_ads_ready;for(var d=0,a=advanced_ads_ready_queue.length;d<a;d++)advanced_ads_ready(advanced_ads_ready_queue[d])}();</script><script src="https://stats.wp.com/e-202219.js" defer=""></script>
+<script>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:10.9',blog:'108871697',post:'883710',tz:'1',srv:'www.sunnewsonline.com'} ]);
+	_stq.push([ 'clickTrackerInit', '108871697', '883710' ]);
+</script>
+
+
+<script type='text/javascript' style='display:none;' async>
+</script>
+
+<script type="text/javascript" data-cfasync="false"></script><script type="text/javascript" onload="__ezcl.handle(true);" async src="////g.ezoic.net/utilcave_com/inc/ezcl.webp?cb=4"></script><script type="text/javascript">(function(){window['__CF$cv$params']={r:'709c92b6ac824c26',m:'o9YTgUThwfh.CyFo6Omm3uKzaBSkEOSmKr.Zrg6VO8Y-1652289499-0-Acymcg3nOojcH8HDG3qGeAa8XZMq8xyqGFoR2aw3C7eYzOzjPESpJCfr3nrrk75lysyiHILx6kjCYHDLKW2zV3dHLXzTN79CKI3Y8/hZB6wmkQ/2HFX8pqBL2tMCOk3aMO3vYWFAas6ytZp/i0+havzcH8i7i0bTJfkeUUa4na+d',s:[0xb426b9df42,0x25640daf59],u:'/cdn-cgi/challenge-platform/h/b'}})();</script></body></html>
